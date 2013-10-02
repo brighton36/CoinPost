@@ -1,0 +1,71 @@
+= Foreigner
+{<img src="https://secure.travis-ci.org/matthuhiggins/foreigner.png?rvm=1.9.3" />}[http://travis-ci.org/matthuhiggins/foreigner]
+
+Foreigner introduces a few methods to your migrations for adding and removing foreign key constraints. It also dumps foreign keys to schema.rb.
+
+The following adapters are supported:
+
+* mysql2
+* postgres
+* sqlite (foreign key methods are a no-op)
+
+== Installation
+
+Add the following to your Gemfile:
+
+  gem 'foreigner'
+
+== API Examples
+
+Foreigner adds two methods to migrations.
+
+* add_foreign_key(from_table, to_table, options)
+* remove_foreign_key(from_table, options)
+
+(Options are documented in connection_adapters/abstract/schema_definitions.rb):
+
+For example, given the following model:
+
+  class Comment < ActiveRecord::Base
+    belongs_to :post
+  end
+  
+  class Post < ActiveRecord::Base
+    has_many :comments, :dependent => :delete_all
+  end
+  
+You should add a foreign key in your migration:
+
+  add_foreign_key(:comments, :posts)
+
+The :dependent option can be moved from the has_many definition to the foreign key:
+
+  add_foreign_key(:comments, :posts, :dependent => :delete)
+
+If the column is named article_id instead of post_id, use the :column option:
+
+  add_foreign_key(:comments, :posts, :column => 'article_id')
+  
+A name can be specified for the foreign key constraint:
+
+  add_foreign_key(:comments, :posts, :name => 'comment_article_foreign_key')
+
+== Change Table Methods
+
+Foreigner adds extra methods to change_table.
+
+Add a missing foreign key to comments:
+
+  change_table :comments do |t|
+    t.foreign_key :posts, :dependent => :delete
+  end
+
+Remove an unwanted foreign key:
+  
+  change_table :comments do |t|
+    t.remove_foreign_key :users
+  end
+
+== License
+
+Copyright (c) 2012 Matthew Higgins, released under the MIT license

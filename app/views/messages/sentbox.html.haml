@@ -1,0 +1,4 @@
+%hr.long-hr
+=render 'message_listing_table', :messages => @messages, 
+  :message_count => @message_count,
+  :columns => [:to, :subject, :sent_at], :folder_name => t('.folder_name')

@@ -1,0 +1,10 @@
+%p=raw RDiscount.new(t('.item_images_teaser')).to_html
+
+=render 'images_upload', :submit_url => create_image_items_url
+
+=semantic_form_for( @item, :url => {:action => :preview} ) do |f|
+  =serialize_to_hidden :item 
+  =f.commit_button :next_preview, :button_html => {:class => 'btn-primary btn-large'}
+  =button_tag t('formtastic.actions.back_to_edit', :model => @item.class.to_s.humanize),
+    :class => 'btn btn-large', :id => 'new_back_btn', 
+    :value => url_for(:action => :new)

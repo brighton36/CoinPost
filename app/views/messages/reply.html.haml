@@ -1,0 +1,19 @@
+=link_to_message_folder @message, '.back_to_folder'
+
+%h2 Previous Message:
+.well
+  =render 'show_message', :message => @message, :table_class => 'reply'
+%hr
+
+%h2 Compose Your Response:
+=tinymce_minimal
+=semantic_form_for @reply, :url => reply_user_message_url do |f|
+  =f.input :subject, :required => true,
+    :input_html => {:class => 'input-xxlarge'}
+  =f.input :body, :required => true,
+    :input_html => {:class => 'tinymce input-xxlarge'}
+  =f.buttons do
+    =f.commit_button :reply, :label => t('formtastic.actions.reply'),
+      :button_html => {:class => 'btn-primary btn-large'}
+    =link_to 'Cancel',:back, :class => 'btn btn-small'
+

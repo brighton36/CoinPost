@@ -1,0 +1,36 @@
+.modal.hide.fade{'data-keyboard' => 'false', 'data-backdrop' => 'static', :id => 'mark_fulfilled_modal'}
+  =semantic_form_for Purchase.new, :url => '#', 
+    :remote => true, :html => {:class => 'mark_fulfilled'} do |f|
+    .modal-header
+      %button.close{'data-dismiss' => 'modal' } ×
+      %h3 Mark this Purchase Fulfilled?
+    .modal-body
+      .modal-body_form
+        #item_description_row.row-fluid
+          .span2 
+            %strong Purchase:
+          .span8#purchase_item_title
+        =f.input :fulfillment_notes, 
+          :label => "Fulfillment Notes (Optional)",
+          :placeholder => "Hint: This is a good place to put a shipment tracking number, if one applies.",
+          :input_html => {:rows => 3}
+        %p Once fulfilled, the purchaser will be receiving a notification containing the above notes, via e-mail.
+      .modal-body_success.hide
+        .row-fluid 
+          .span2
+            =image_tag '/images/green-checkmark.png', :alt => 'Green Checkmark',
+              :size => '64x64'
+          .span10
+            %h3 Thank-you for using CoinPost!
+            %p The purchaser has been notified by mail that their item was fulfilled.
+            %p Be sure to leave feedback on this buyer in your "Leave Feedback" dashboard, whenever you're ready to tell us what you think about them.
+    .modal-footer
+      =f.buttons do
+        =image_tag '/images/loading.gif', :size => '32x32', 
+          :alt => 'Loading', :class => 'loading_indicator'
+        =link_to 'Cancel','#', :class => 'btn btn-large cancel',
+          'data-dismiss' => 'modal'
+        =f.commit_button :mark_fulfilled, :label => t('formtastic.actions.mark_fulfilled'),
+          :button_html => {:class => 'btn-success btn-large'}
+      .close_actions.hide
+        =link_to 'Ok, Great!', sales_unfulfilled_users_path(@user), :class => 'btn'

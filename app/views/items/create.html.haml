@@ -1,0 +1,68 @@
+%h1 Your item was created successfully
+%hr.long-hr
+%p
+  Thank-you for listing with CoinPost! Please allow us a few minutes before we 
+  make can make this item available to everyone else.
+
+=link_to 'Back to Dashboard', dashboard_index_path
+
+%h4.down24 Hey wait a second, want some easy traffic for your listing?
+%p 
+  How about sending it to Reddit's 
+  <a href="http://www.reddit.com/r/bitmarket">/r/bitmarket</a>? If you have a 
+  reddit account, we can even perform the listing for you automatically. 
+%p Here's what your listing would look like:
+.well.reddit_mockup
+  =image_tag '/images/reddit-link-meta-logo.png', :size => '111x49', :class => 'meta-logo', 
+    :alt => 'Reddit Link Logo'
+  .post_description
+    %span.header=raw '[WTS] %s' %  [@item.title]
+    %span.domain (coinpost.com)
+    %span.submitted submitted 0 days ago by yourusernamehere
+    %span.actions comment share
+%p 
+  To submit the above post right to /r/bitmarket, enter your Reddit login 
+  credentials below:
+
+=form_tag submit_to_reddit_item_path(@item), :method => :post, :remote => true, 
+  :class => 'form-horizontal', :id => 'submit_to_reddit' do
+  =hidden_field_tag 'reddit[iden]', nil
+  .row.span7
+    .alert.alert-error.hidden
+      %p 
+        %strong Whoops!
+        %span.error_banner
+  .row
+    .span9
+      .control-group
+        %label.control-label(for='reddit_username') Reddit Username
+        .controls.input
+          =text_field_tag 'reddit[username]', current_user.reddit_username, 
+            :placeholder => 'Username'
+      .control-group
+        %label.control-label(for='reddit_password') Reddit Password
+        .controls.input
+          =password_field_tag 'reddit[password]', current_user.reddit_password, 
+            :placeholder => 'Password'
+      .control-group.captcha.hidden
+        %label.control-label(for='reddit_captcha') Solve a Captcha
+        .controls.input
+          %img(width="120" height="50" src="" id="captcha_iden")
+        .controls.input
+          =text_field_tag 'reddit[captcha]', nil, :placeholder => 'Captcha Solution'
+      .control-group
+        .controls.input
+          %label.checkbox
+            =check_box_tag 'reddit[remember_password]', '1', 
+              (!current_user.reddit_username.nil?)
+            Remember my login
+          =button_tag 'Post to Reddit', :class => 'btn'
+          =image_tag '/images/loading.gif', :size => '32x32',
+            :alt => 'Loading', :class => 'loading_indicator hidden'
+#submit_to_reddit_success.hidden
+  %h4.down24 Reddit Submission Accepted!
+  %p
+    = 'Nice work %s.' % current_user.name
+    This submission will get you more exposure for your item. Be sure to check your 
+    reddit account regularly for messages from other reddit users regarding this 
+    submission.

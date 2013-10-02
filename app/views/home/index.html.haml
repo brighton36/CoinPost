@@ -1,0 +1,17 @@
+%h2 Items Expiring Soon
+%hr.long-hr
+-@items_ending_soon.in_groups_of(2).each do |items|
+  .row-fluid
+    -items.compact.each do |item|
+      .span6
+        %h3=link_to item.title, item
+        -if item.images.length > 0
+          =cw_image item.images[0].image.category_listing_small, 
+            :alt => item.title, :class=> 'thumbnail pull-left'
+        %p='%s...' % item.listing_teaser
+        %p
+          =link_to "View Details", item_path(item), :class => 'btn'
+          %span.price
+            %strong Price:
+            =btc_money item.price
+=link_to 'Browse All Items', categories_path, :class => 'btn btn-primary btn-large', :id => 'browse-all-items-btn'

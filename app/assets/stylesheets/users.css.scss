@@ -1,0 +1,36 @@
+// Place all the styles related to the users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+#send_user_message {
+  #message_subject{ width: 520px; }
+}
+
+.user_field{
+  font-size: 1.2em;
+  margin: 10px 0 10px 0;
+  .field_name {
+    width: 140px;
+    float: left;
+  }
+  .field_value {
+  }
+}
+
+.send_message_button{
+  margin-top:10px;
+}
+
+h3.feedback_header {
+  margin-top:20px;
+}
+
+.positive_rating{ color: #5BB75B; font-weight:bold; }
+.negative_rating{ color: #942A25; font-weight:bold; }
+
+#error_explanation{
+  h2{ margin-bottom: 0px !important;}
+  color: #B94A48;
+  ul{ margin-bottom: 20px;}
+}
+
+

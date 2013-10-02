@@ -1,0 +1,60 @@
+%hr.long-hr
+.row-fluid.user_field
+  .field_name User:
+  .field_value=@user.name
+.row-fluid.user_field
+  .field_name Location:
+  .field_value=@user.location
+.row-fluid.user_field
+  .field_name Sales History:
+  .field_value
+    =t '.items_sold', @user.feedback_as_seller
+.row-fluid.user_field
+  .field_name Purchase History:
+  .field_value
+    =t '.items_bought', @user.feedback_as_buyer
+
+-if current_user
+  =link_to 'Send me a message', '#send_user_message',
+    'data-toggle' => 'modal', :class => 'send_message_button btn btn-primary'
+  =render 'shared/message_modal', 
+    :modal_id => 'send_user_message',
+    :title    => 'Want to send %s a message?' % @user.name,
+    :url      => user_messages_url(@user),
+    :message  => @message, 
+    :msg_form => 'user_message',
+    :commit_label => 'Send Message'
+- else
+  =link_to 'Send me a message', new_user_session_url, 
+    :class => 'send_message_button btn btn-primary toggle_auth_required'
+
+-if @feedback.length > 0
+  %h3.feedback_header Feedback from others
+  %table{:class => ['table', 'table-striped', 'table-bordered', 'table-condensed'],
+    :id => '%s_feedback_table' % action_name }
+    %thead
+      %tr
+        %td Rating
+        %td Transaction
+        %td Purchase Date
+    %tbody
+      - @feedback.each do |f|
+        %tr
+          - if f.purchaser == @user
+            %td=user_rating f.rating_on_purchaser
+            %td
+              %strong Bought: 
+              =link_to f.item.title, f.item
+              %br
+              Seller Comments: 
+              %em=f.comment_on_purchaser
+            %td=l f.created_at, :format => :short
+          - else
+            %td=user_rating f.rating_on_seller
+            %td
+              %strong Sold:
+              =link_to f.item.title, f.item
+              %br
+              Buyer Comments: 
+              %em=f.comment_on_seller
+            %td=l f.created_at, :format => :short

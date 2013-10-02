@@ -1,0 +1,131 @@
+#!/usr/bin/env ruby
+# Runs the test suite against a local server spawned automatically in a
+# thread. After tests are done, the server is shut down.
+#
+# If filename arguments are given, only those files are run. If arguments given
+# are not filenames, they are taken as words that filter the list of files to run.
+#
+# Examples
+#
+#   $ script/test
+#   $ script/test test/env_test.rb
+#   $ script/test excon typhoeus
+#   $ SSL=yes script/test net_http -- -n /ssl/
+
+require 'rubygems'
+require 'bundler'
+begin
+  Bundler.setup
+rescue Bundler::GemNotFound
+  $stderr.print "Error: "
+  $stderr.puts $!.message
+  warn "Run `bundle install` to install missing gems."
+  exit 1
+end
+
+$VERBOSE = true
+
+host      = 'localhost'
+logfile   = 'log/test.log'
+test_glob = 'test/**/*_test.rb'
+
+if ssl_mode = ENV['SSL'] == 'yes'
+  unless ENV['SSL_KEY'] and ENV['SSL_FILE']
+    key_file  = ENV['SSL_KEY']  = 'tmp/faraday-cert.key'
+    cert_file = ENV['SSL_FILE'] = 'tmp/faraday-cert.crt'
+    system 'rake', key_file, cert_file
+    abort unless $?.success?
+  end
+end
+
+require 'fileutils'
+FileUtils.mkdir_p 'log'
+
+# find available port
+require 'socket'
+port = begin
+  server = TCPServer.new(host, 0)
+  server.addr[1]
+ensure
+  server.close if server
+end
+
+server = nil
+
+Thread.abort_on_exception = true
+
+# start test server in a separate thread
+thread = Thread.new do
+  old_verbose, $VERBOSE = $VERBOSE, nil
+  begin
+    require File.expand_path('../../test/live_server', __FILE__)
+  ensure
+    $VERBOSE = old_verbose
+  end
+  require 'webrick'
+  log_io = File.open logfile, 'w'
+  log_io.sync = true
+  webrick_opts = {
+    :Port => port, :Logger => WEBrick::Log::new(log_io),
+    :AccessLog => [[log_io, "[%{X-Faraday-Adapter}i] %m  %U  ->  %s %b"]]
+  }
+  if ssl_mode
+    require 'webrick/https'
+    webrick_opts.update \
+      :SSLEnable       => true,
+      :SSLPrivateKey   => OpenSSL::PKey::RSA.new(File.read(key_file)),
+      :SSLCertificate  => OpenSSL::X509::Certificate.new(File.read(cert_file)),
+      :SSLVerifyClient => OpenSSL::SSL::VERIFY_NONE
+  end
+  Rack::Handler::WEBrick.run(Faraday::LiveServer, webrick_opts) {|serv| server = serv }
+end
+
+# find files to test
+test_files = Dir[test_glob]
+if ARGV.any?
+  all_files, test_files = test_files, []
+  args, extra_args = ARGV, []
+  if idx = args.index('--')
+     extra_args = args[(idx+1)..-1]
+     args = args[0, idx]
+  end
+  for arg in args
+    re = /(\b|_)#{arg}(\b|_)/
+    test_files.concat all_files.select { |f| f =~ re }
+  end
+  test_files.concat extra_args
+end
+
+require 'net/https'
+conn = Net::HTTP.new host, port
+conn.open_timeout = conn.read_timeout = 0.1
+conn.use_ssl      = ssl_mode
+conn.verify_mode  = OpenSSL::SSL::VERIFY_NONE
+
+# test if test server is accepting requests
+responsive = lambda { |path|
+  begin
+    res = conn.start { conn.get(path) }
+    res.is_a?(Net::HTTPSuccess)
+  rescue Errno::ECONNREFUSED, Errno::EBADF, Timeout::Error, Net::HTTPBadResponse
+    false
+  end
+}
+
+server_pings = 0
+begin
+  # block until test server is ready
+  thread.join 0.05
+  server_pings += 1
+  abort "test server didn't manage to start" if server_pings >= 50
+end until responsive.call('/echo')
+
+ENV['LIVE'] = "http#{ssl_mode ? 's' : ''}://#{host}:#{port}"
+ok = system 'ruby', '-Ilib:test',
+  '-e', 'load(ARGV.shift) while ARGV.first =~ /^[^-]/',
+  *test_files
+
+server.respond_to?(:stop!) ? server.stop! : server.stop
+thread.join
+
+exit 1 unless ok

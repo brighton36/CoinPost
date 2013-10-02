@@ -1,0 +1,9 @@
+Subject : <%=@subject%>
+Email   : <%=@email%>
+
+Message :
+<%= @message.lines.collect{|l| "    %s" % l}.join %>
+
+-----------------
+User Agent     : <%= @user_agent%>
+Remote Address : <%= @user_address%>

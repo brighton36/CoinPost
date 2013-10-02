@@ -1,0 +1,50 @@
+<% sql_driver = 'sqlite' %>
+sqlite_test: &sqlite_test
+  adapter: sqlite3
+  database: db/test.sqlite3
+  timeout: 5000
+
+sqlite_development: &sqlite_development
+  adapter: sqlite3
+  database: db/development.sqlite3
+  timeout: 5000
+
+postgres_test: &postgres_test
+  adapter: postgresql
+  encoding: unicode
+  database: coinpost_test
+  username: coinpost_development
+  password: password
+  host: localhost
+  pool: 5
+  min_messages: WARNING
+
+postgres_development: &postgres_development
+  adapter: postgresql
+  encoding: unicode
+  database: coinpost_development
+  username: coinpost_development
+  password: password
+  host: localhost
+  pool: 5
+
+development:
+  <<: *<%=sql_driver%>_development
+
+test: &test
+  <<: *<%=sql_driver%>_test
+
+cucumber:
+  <<: *test
+
+profile:
+  <<: *<%=sql_driver%>_development
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: coinpost_production
+  username: coinpost_production
+  password: password
+  host: localhost
+  pool: 5

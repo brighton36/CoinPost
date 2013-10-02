@@ -1,0 +1,29 @@
+%hr.long-hr
+%table.table.table-striped.table-bordered#category_listing_table
+  %thead
+    %tr
+      %th Item
+      %th Price
+      %th Expires In
+  %tbody
+    -@items.each do |item|
+      %tr
+        %td
+          .span6.item_listing_header=link_to item.title, item
+          .container.span6
+            .row-fluid
+              -if item.category_listing_thumbnail
+                %div.span4
+                  =link_to cw_image( item.category_listing_thumbnail,
+                    :alt => ('%s Thumbnail' % item.title) ), item, :class => 'thumbnail'
+                %div.span8
+                  %p
+                    = raw( '%s... %s' % [ h(item.listing_teaser), 
+                      link_to('Read More', item) ] )
+              -else
+                %div.span12
+                  %p=item.listing_teaser
+        %td
+          %div=btc_money item.price
+        %td=time_ago_in_words item.expires_at
+=paginate @items

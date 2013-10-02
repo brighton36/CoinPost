@@ -1,0 +1,113 @@
+package configuration for libffi is not found
+have_header: checking for ffi.h... -------------------- no
+
+"clang -o conftest -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1/x86_64-darwin11.3.0 -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1/ruby/backward -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1 -I. -I/Users/cderose/.rvm/usr/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE    -O3 -ggdb -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wshorten-64-to-32 -Wimplicit-function-declaration  -fno-common -pipe conftest.c  -L. -L/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/lib -L/Users/cderose/.rvm/usr/lib -L.      -lruby.1.9.1  -lpthread -ldl -lobjc "
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: int main() {return 0;}
+/* end */
+
+"clang -E -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1/x86_64-darwin11.3.0 -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1/ruby/backward -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1 -I. -I/Users/cderose/.rvm/usr/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE    -O3 -ggdb -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wshorten-64-to-32 -Wimplicit-function-declaration  -fno-common -pipe  conftest.c -o conftest.i"
+conftest.c:3:10: fatal error: 'ffi.h' file not found
+#include <ffi.h>
+         ^
+1 error generated.
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <ffi.h>
+/* end */
+
+--------------------
+
+find_header: checking for ffi.h in /usr/local/include... -------------------- no
+
+"clang -E -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1/x86_64-darwin11.3.0 -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1/ruby/backward -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1 -I. -I/Users/cderose/.rvm/usr/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE    -O3 -ggdb -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wshorten-64-to-32 -Wimplicit-function-declaration  -fno-common -pipe  conftest.c -o conftest.i"
+conftest.c:3:10: fatal error: 'ffi.h' file not found
+#include <ffi.h>
+         ^
+1 error generated.
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <ffi.h>
+/* end */
+
+"clang -E -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1/x86_64-darwin11.3.0 -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1/ruby/backward -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1 -I. -I/Users/cderose/.rvm/usr/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE    -O3 -ggdb -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wshorten-64-to-32 -Wimplicit-function-declaration  -fno-common -pipe -I/usr/local/include conftest.c -o conftest.i"
+conftest.c:3:10: fatal error: 'ffi.h' file not found
+#include <ffi.h>
+         ^
+1 error generated.
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <ffi.h>
+/* end */
+
+--------------------
+
+have_func: checking for rb_thread_blocking_region()... -------------------- yes
+
+"clang -o conftest -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1/x86_64-darwin11.3.0 -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1/ruby/backward -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1 -I. -I/Users/cderose/.rvm/usr/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE    -O3 -ggdb -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wshorten-64-to-32 -Wimplicit-function-declaration  -fno-common -pipe conftest.c  -L. -L/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/lib -L/Users/cderose/.rvm/usr/lib -L.      -lruby.1.9.1  -lpthread -ldl -lobjc "
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: /*top*/
+4: int main() {return 0;}
+5: int t() { void ((*volatile p)()); p = (void ((*)()))rb_thread_blocking_region; return 0; }
+/* end */
+
+--------------------
+
+have_func: checking for ruby_native_thread_p()... -------------------- yes
+
+"clang -o conftest -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1/x86_64-darwin11.3.0 -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1/ruby/backward -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1 -I. -I/Users/cderose/.rvm/usr/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE    -O3 -ggdb -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wshorten-64-to-32 -Wimplicit-function-declaration  -fno-common -pipe conftest.c  -L. -L/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/lib -L/Users/cderose/.rvm/usr/lib -L.      -lruby.1.9.1  -lpthread -ldl -lobjc "
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: /*top*/
+4: int main() {return 0;}
+5: int t() { void ((*volatile p)()); p = (void ((*)()))ruby_native_thread_p; return 0; }
+/* end */
+
+--------------------
+
+have_func: checking for rb_thread_call_with_gvl()... -------------------- yes
+
+"clang -o conftest -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1/x86_64-darwin11.3.0 -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1/ruby/backward -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1 -I. -I/Users/cderose/.rvm/usr/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE    -O3 -ggdb -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wshorten-64-to-32 -Wimplicit-function-declaration  -fno-common -pipe conftest.c  -L. -L/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/lib -L/Users/cderose/.rvm/usr/lib -L.      -lruby.1.9.1  -lpthread -ldl -lobjc "
+conftest.c:5:53: error: use of undeclared identifier 'rb_thread_call_with_gvl'
+int t() { void ((*volatile p)()); p = (void ((*)()))rb_thread_call_with_gvl; return 0; }
+                                                    ^
+1 error generated.
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: /*top*/
+4: int main() {return 0;}
+5: int t() { void ((*volatile p)()); p = (void ((*)()))rb_thread_call_with_gvl; return 0; }
+/* end */
+
+"clang -o conftest -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1/x86_64-darwin11.3.0 -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1/ruby/backward -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1 -I. -I/Users/cderose/.rvm/usr/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE    -O3 -ggdb -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wshorten-64-to-32 -Wimplicit-function-declaration  -fno-common -pipe conftest.c  -L. -L/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/lib -L/Users/cderose/.rvm/usr/lib -L.      -lruby.1.9.1  -lpthread -ldl -lobjc "
+conftest.c:5:11: warning: implicit declaration of function 'rb_thread_call_with_gvl' is invalid in C99 [-Wimplicit-function-declaration]
+int t() { rb_thread_call_with_gvl(); return 0; }
+          ^
+1 warning generated.
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: /*top*/
+4: int main() {return 0;}
+5: int t() { rb_thread_call_with_gvl(); return 0; }
+/* end */
+
+--------------------
+

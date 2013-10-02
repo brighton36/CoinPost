@@ -1,0 +1,282 @@
+en:
+  time:
+    formats:
+      default: "%b %e, %Y (%I:%M%p %Z)"
+  layouts:
+    application:
+      tagline: "CoinPost - Get Bitcoins in Exchange for your Products and Services"
+      copyright_footer: "Copyright &copy; 2011-%{year} CoinPost.com Inc. All rights reserved."
+  shared:
+    headerbar: 
+      exchange_rate_notice: "Conversion rate is calculated using Mt.Gox's sell ticker, approximately once every 15 minutes" 
+  layout:  
+    header:
+      index: "Home"
+      buy: "Buy"
+      sell: "Sell"
+      get_coins: "Get Coins"
+      about_us: "About Us"
+      help: "Need Help?"
+      search_listings: "Search Listings"
+      welcome_user: "Welcome \"%{username}\""
+      view_dashboard: "View Dashboard"
+      edit_profile: "Edit Profile"
+      sign_out: "Sign-out"
+      register: "Register"
+      sign_in: "Sign-in or Create Account"
+  flash:
+    items:
+      add_images:
+        alert: "**This item has too many images.** You may only include a maximum of six images per item. Please delete images in order to continue."
+      update_images:
+        notice: "**Your item was updated successfully.** Please allow us a few minutes before we make can make this change available to everyone else."
+      create:
+        notice: "**Your item was created successfully.** Please allow us a few minutes before we make can make this item available to everyone else."
+        alert: "**There was a problem with this item,** please address the highlighted fields, so that we can continue."
+      update:
+        notice: "**Your item was updated successfully.** Please allow us a few minutes before we make can make this change available to everyone else."
+        alert: "**There was a problem with your changes,** please address the highlighted fields, so that we can commit your changes."
+      destroy:
+        notice: "**Your item was removed successfully.** Please allow us a few minutes before we make can make this change available to everyone else."
+        alert: "**There was a problem removing your item**"
+      disable:
+        notice: "**Your item was delisted successfully.** Please allow us a few minutes before we make can make this change available to everyone else."
+        alert: "**There was a problem disabling your item**"
+      new:
+        alert: "**There was a problem with this item,** please address the highlighted fields, so that we can continue."
+    messages:
+      mark_paid:
+        notice: "**Your purchase was successfully marked paid.**"
+        alert: "**There was a problem marking this purchase paid.** Please try again later."
+      reply:
+        notice: "**Your reply was sent successfully.**"
+        alert: "**There was a problem sending your reply. Check the form for details.**"
+      trash_messages:
+        notice: "The selected messages were sent to your trash"
+      untrash_messages: 
+        notice: "The selected messages were sent to your inbox"
+  home:
+    get_coins: 
+      title: "Get Coins"
+    about_us: 
+      title: "About Us"
+    help: 
+      title: "Need Help?"
+  dashboard:
+    items_listing:
+      items_displayed: "Displaying all %{total} items."
+    item_table:
+      show: "View"
+      edit: "Edit"
+      edit_images: "Images"
+      destroy: "Remove"
+      disable: "Delist"
+      relist: "Relist"
+      destroy_confirm: "Are you sure you wish to delete this item? This action is irreversable."
+      disable_confirm: "Are you sure you wish to disable this item? This action is irreversable."
+      click_for_more: "Click here for more items"
+    index:
+      title: "Your Activity at a Glance"
+      item_listing: "Displaying %{current} of %{total}."
+      active_items: "Actively listed items"
+      pending_items: "Soon to be listed Items"
+      expired_items: "Expired & Delisted Item listings"
+      unfulfilled_purchases: "Unfulfilled Purchases"
+      unpaid_purchases: "Unpaid Purchases"
+      purchase_listing: "Displaying %{current} of %{total}."
+    active_items:
+      title: "Actively listed items"
+    pending_items:
+      title: "Soon to be listed items"
+    expired_items:
+      title: "Expired & Delisted Item listings"
+  categories:
+    show:
+      header_title: "Buy %{title} with Bitcoins"
+      title: "Items in %{title} (%{count})"
+      all_categories: "All Categories"
+      rss_description: "Items in %{category}"
+    index:
+      title: "Items in All Categories"
+  items:
+    edit:
+      title: "Let's modify your listing"
+    relist:
+      title: "Let's relist this item"
+    show:
+      title: "%{title}"
+    new:
+      title: "Let's sell something"
+    preview:
+      title: "Verify this item before it goes live?"
+    edit_images:
+      title: "Manage this item's images"
+      item_images_teaser: "Use the controls below to upload & manage the images of what you're selling. Be sure to pick attractive images that sell, and note that you're limited to a **maximum of six images**."
+    add_images:
+      title: "Now let's add some images to this item"
+      item_images_teaser: "Use the controls below to upload images of what you're selling. Be sure to pick attractive images that sell, and note that you're limited to a **maximum of six images**."
+    item_form:
+      blank_return_policy: "(No return policy)"
+      blank_shipping_policy: "(No shipping policy)"
+      user_time_zone_label: "The above times reflect the following time zone"
+    show_item:
+      seller_feedback_positive: "%{positive} Positive Reviews"
+      seller_feedback_negative: "%{negative} Negative Reviews"
+    submit_to_reddit:
+      general:
+        invalid_credentials: "Seems like your reddit username and/or password is invalid. Please try again?"
+        attribute_errors: "There was a problem submitting this item to reddit. Please address the errors below, so that we can continue."
+        unhandled_exception: "Seems like reddit gave us the error \"%{message}\". We reported this problem to the dev team, but trying to submit this item at a later time should work."
+      username:
+        is_missing: "is a required field"
+      password:
+        is_missing: "is a required field"
+      captcha:
+        needs_solving: "Seems like reddit wants you to solve a Captcha. Type your answer in the field above."
+  messages:
+    inbox:
+      title: "Messages in your Inbox"
+      folder_name: 'Inbox folder'
+    sentbox:
+      title: "Sent Messages"
+      folder_name: 'Sent Messages folder'
+    trash:
+      title: "Messages in your Trash"
+      folder_name: 'Trash'
+    show:
+      title: "Viewing \"%{subject}\""
+      back_to_folder: "Back to %{folder_name}"
+      reply: "Send a reply"
+    reply:
+      title: "Reply to \"%{subject}\""
+      back_to_folder: "Back to %{folder_name}"
+    send_reply:
+      title: "Reply to \"%{subject}\""
+    message_listing_table:
+      message_count_teaser: "There are %{count} messages in your %{mail_folder}"
+      trash_selected: "Trash Selected"
+      untrash_selected: "Un-trash Selected"
+      show: "View"
+      reply: "Reply"
+  purchases:
+    purchase_listing_table:
+      item_label: Item
+      item_with_notes_label: Item
+      purchaser_label: Purchaser
+      creator_label: Seller
+      quantity_purchased_label: Qty Bought
+      price_label: Unit Price
+      total_price_label: Total Price
+      payment_sent_at_label: Paid On
+      item_sent_at_label: Sent At
+      mark_fulfilled: Mark Fulfilled
+      mark_paid: Mark Paid
+      mark_paid_confirm: Are you sure you wish to mark this purchase paid?
+      click_for_more: Click to manage these purchases
+    paid:
+      title: "Paid Purchases"
+      heading_count_teaser: You have paid for and completed %{count} purchases.
+    unpaid:
+      title: "Purchases Requiring Payment"
+      heading_count_teaser: You have %{count} purchases which have yet to be marked as paid.
+    unfulfilled:
+      title: "Sales Requiring Fulfillment"
+      heading_count_teaser: You have %{count} unfulfilled purchases. Please ensure that you have received payment from the sender before shipping out their item.
+    fulfilled:
+      title: "Fulfilled Sales"
+      heading_count_teaser: You have fulfilled and completed %{count} sales.
+    create:
+      message_to_creator_subject: "You just sold %{title}"
+      message_to_purchaser_subject: "You just bought %{title}"
+      message_to_creator_body:
+        Congratulations, your [%{title}](%{item_url}) was just purchased by [%{purchaser}](%{purchaser_url}). [%{purchaser}](%{purchaser_url}) was instructed to send their payment to you, in the amount of %{price} BTC.
+
+
+        **Please monitor your bitcoin wallet, to ensure this payment is received at the address %{btc_receive_address}.**
+
+
+        Once you receive this payment, please visit the purchase management section of your dashboard, and mark this payment as received. Subsequently you are obligated to fulfill this user's order. 
+
+
+        If there is a problem receiving payment or shipping information from this user, first try to resolve the issue with them by replying to this message. If you find the user unresponsive, or otherwise uncooperative, then be sure to note your issues in your user's feedback under your purchase management.
+      message_to_purchaser_body:
+        Congratulations, you just purchased [%{title}](%{item_url}) from [%{creator}](%{creator_url}). 
+
+
+        **If you haven't done so already, now is the time to send your payment of %{price} BTC to %{btc_receive_address}.**
+
+
+        Once this payment is received, the seller is obligated to process your order. Updates regarding your purchase's fulfillment will arrive to your inbox.
+
+
+        If there is a problem receiving an order from this user, first try to resolve the issue with them by replying to this message. If you find the user unresponsive, or otherwise uncooperative, then be sure to note your issues in your seller's feedback under the purchase management section of your dashboard.
+    mark_fulfilled:
+      message_to_purchaser_subject: "Here's an update from the seller regarding your %{title}"
+      message_to_purchaser_body:
+        Your purchase of [%{title}](%{item_url}) was just marked as having been fulfilled by [%{creator}](%{creator_url}). For physical items, this means the item has shipped. 
+        
+
+        The seller notated the following details on your fulfillment - **%{fulfillment_notes}**.
+
+ 
+        If there is a problem receiving this item, first try to resolve the issue with them by replying to this message. If you find the seller unresponsive, or otherwise uncooperative, then be sure to note your issues in your user's feedback under your dashboard.
+    needs_feedback:
+      title: "Sales & Purchases Requiring Feedback"
+      teaser: "The following transactions are complete, or nearly complete, and could use your feedback. Please indicate if you had a positive or negative experience with the user, and if you can, leave a detailed comment as well."
+  users:
+    show:
+      title: "%{user}"
+      items_sold: "%{positive} positive reviews and %{negative} negative reviews"
+      items_bought: "%{positive} positive reviews and %{negative} negative reviews"
+  registrations:
+    edit:
+      title: "Edit Your Profile"
+    update:
+      title: "Update Your Profile"
+    new:
+      title: "Sign Up"
+    create:
+      title: "Sign Up"
+      captcha_error: "There was an error with the recaptcha code. Please try again."
+  formtastic:
+    titles:
+      basics_group: "The Basics"
+      pricing_group: "Pricing & Payment"
+      description_group: "Item Description"
+      time_options_group: "Listing & Expiration Times"
+    labels:
+      user:
+        email: "Your E-mail address"
+        location: "Your Location"
+        btc_receive_address: "Your default Bitcoin address"
+        currency: "Your local currency"
+        password: "Password"
+        password_confirmation: "Password (Type to confirm)"
+      item:
+        title: "Product or Service Title"
+        location: "Item's Location"
+        description: "This will be the description displayed to your potential customers. More is better, and get specific!"
+        categories: "What categories does this item belong in? (Choose up to three by holding down ctrl)"
+        price: "Price, in Bitcoins"
+        btc_receive_address: "Your Bitcoin Receive Address"
+        quantity_listed: "How many do you have to sell?"
+        lists_at: "Item begins its listing at"
+        expires_at: "Item is available until (maximum 31 days)"
+      message:
+        body: "Message"
+    placeholders:
+      item:
+        title: "Be sure to choose something accurate, and catchy"
+        btc_receive_address: "This is usually a 34 digit alphanumeric number"
+        location: "An approximation will work, doesn't have to be exact."
+    actions:
+      next_preview: "Next - Preview Your %{model}"
+      edit: "Edit %{model}"
+      next_images: "Next - Add some images"
+      update: "Update Item"
+      back_to_edit: "Back to %{model} Edit"
+      reply: "Send your reply"
+      buy: "Buy It!"
+      mark_fulfilled: "Mark Fulfilled"
+      items:
+        send_your_question: "Send your Question"

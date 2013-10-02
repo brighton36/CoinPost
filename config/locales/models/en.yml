@@ -1,0 +1,50 @@
+en:
+  mailboxer:
+    message_mailer:
+      subject_new: "CoinPost Message: %{subject}"
+      subject_reply: "CoinPost Message Reply: %{subject}"
+    notification_mailer:
+      subject: "CoinPost Notification: %{subject}"
+  activerecord:
+    errors:
+      models:
+        message:
+          attributes:
+            subject:
+              invalid_characters: "contains invalid characters"
+        item:
+          attributes:
+            title:
+              invalid_characters: "contains invalid characters"
+            location:
+              invalid_characters: "contains invalid characters"
+            categories:
+              categories_within: 'must have at least one, and no more than three categories'
+            expires_at:
+              after_lists_at: "must occur after the item listing"
+              max_hours: "cannot list for more than 31 days"
+            lists_at:
+              in_past: "cannot begin its listing in the past"
+              more_than_one_month: "cannot begin more than one month from today"
+            images:
+              length: "can't have more than six images" 
+        purchase:
+          attributes:
+            fulfillment_notes:
+              invalid_characters: "contains invalid characters"
+            comment_on_purchaser:
+              invalid_characters: "contains invalid characters"
+            comment_on_seller:
+              invalid_characters: "contains invalid characters"
+            quantity_purchased:
+              greater_than_quantity_availabile: "is greater than the quantity available"
+            item_id:
+              item_is_unpurchaseable: "belongs to an unpurchaseable item"
+            rating_on_seller:
+              required: "is a required field"
+            rating_on_purchaser:
+              required: "is a required field"
+  recaptcha:
+    errors:
+      verification_failed: "There was an error with the recaptcha code below. Please re-enter the code."
+      recaptcha_unavailable: "The recaptcha service was unable to process our request. Please try again."

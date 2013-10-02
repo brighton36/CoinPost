@@ -1,0 +1,35 @@
+%table.table.table-striped.table-bordered.table-condensed.item_listing{:id => table_id}
+  %thead
+    %tr
+      %th Item
+      %th.sold Qty Sold
+      %th.price Price
+      %th.date Listed At
+      %th.date Expires At
+      %th.row_actions
+  %tbody
+    -items.each do |item|
+      %tr
+        %td=(permitted_to? :show, item) ? link_to(item.title, item) : item.title
+        %td=item.quantity_purchased
+        %td=btc_money item.price
+        %td=l item.lists_at, :format => :short
+        %td=l item.expires_at, :format => :short
+        %td
+          -if permitted_to? :edit, item
+            =link_to t('.edit'), edit_item_url(item)
+          -if permitted_to? :edit_images, item
+            =link_to t('.edit_images'), edit_images_item_url(item)
+          -if permitted_to? :destroy, item
+            =link_to t('.destroy'), item, :method => :delete, 
+              :data => {:confirm => t('.destroy_confirm')}
+          -if permitted_to? :disable, item
+            =link_to t('.disable'), disable_item_url(item), :method => :post,
+              :data => {:confirm => t('.disable_confirm')}
+          -if permitted_to? :relist, item
+            =link_to t('.relist'), relist_item_url(item)
+    - if click_for_more_url
+      %tr
+        %td(colspan=6)
+          %span.pull-right
+            =link_to t('.click_for_more'), click_for_more_url

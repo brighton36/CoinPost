@@ -1,0 +1,22 @@
+%hr.long-hr
+= semantic_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f|
+  = devise_error_messages!
+  =f.input :email, :required => true, :input_html => {:class => 'input-xlarge'}
+  =f.input :location,
+    :placeholder => 'Any approximation will work',
+    :input_html => {:class => 'input-xlarge'}
+  =f.input :btc_receive_address,
+    :placeholder => t('formtastic.placeholders.item.btc_receive_address'),
+    :input_html => {:class => 'input-xlarge'}
+  =f.input :currency, :input_html => {:class => 'selectpicker'}, :as => :select,
+    :collection => supported_currencies_options_map, :include_blank => false
+  =f.input :password, :required => true, 
+    :placeholder => 'Leave this blank if you don\'t want to change',
+    :input_html => {:class => 'input-xlarge', :autocomplete => 'off'}
+  =f.input :password_confirmation, :required => true, 
+    :placeholder => 'Leave this blank if you don\'t want to change',
+    :input_html => {:class => 'input-xlarge', :autocomplete => 'off'}
+
+  =f.buttons do
+    =f.commit_button 'Update Profile',
+      :button_html => {:class => 'btn-primary btn-large'}

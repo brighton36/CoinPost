@@ -1,0 +1,41 @@
+!!! 5
+%html(lang="en")
+  %head
+    %meta{ 'http-equiv' => 'content-type', 'content' => 'text/html; charset=utf-8' }
+    %title=page_header_title
+    %link(rel="shortcut icon" href="/favicon.ico" type="image/x-icon")
+    = stylesheet_link_tag "application", :media => "all"
+    -if Rails.env.production?
+      %script(type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" defer="defer")
+    -else
+      = javascript_include_tag "jquery", :defer => (!Rails.env.test?)
+    = javascript_include_tag "application", :defer => (!Rails.env.test?)
+    - unless current_user
+      %script{:type=> "text/javascript", :defer => (!Rails.env.test?), 
+      :src => "//www.google.com/recaptcha/api/js/recaptcha_ajax.js" }
+    - if respond_to?(:resource_assets) && resource_assets.try(:length).try( :>, 0)
+      = raw resource_assets.flatten.compact.join("\n") 
+    =render :partial => 'layouts/ganalytics_script'
+    = csrf_meta_tags
+  %body{:id => (action_name == 'index' && controller_name == 'home') ? 'home' : nil}    
+    %header
+      =render 'shared/headerbar'
+    %section
+      #main-content.container
+        .row
+          =render 'shared/blocks', :blocks => blocks_for(:left)
+          .span9
+            - if page_title && ( !respond_to?(:render_title) || render_title )
+              %h1= page_title
+            = render 'shared/flash', :flash => flash
+            = yield
+          =render 'shared/blocks', :blocks => blocks_for(:right)
+    %footer
+      =render 'shared/footerbar'
+      %div.copyright
+        %p=raw t('.copyright_footer', :year => Time.zone.now.year)
+    -unless current_user
+      = cache 'login_modal' do
+        =render 'shared/login_modal'
+    /[if lt IE 9]
+      =render 'shared/ie8less'

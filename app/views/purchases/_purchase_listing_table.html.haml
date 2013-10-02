@@ -1,0 +1,63 @@
+-has_actions = local_assigns.has_key? :actions
+-has_click_for_more = local_assigns.has_key? :click_for_more_url
+%table{:class => ['table', 'table-striped', 'table-bordered', 'table-condensed',
+'payment_listing_table'], :id => '%s_payments_table' % action_name }
+  %thead
+    %tr
+      -columns.each do |col|
+        %th{:class => '%s_column' % col}= t '.%s_label' % col
+      -if has_actions
+        %th.actions_column
+  %tbody
+    - if purchases.length == 0
+      %tr
+        %td.no_purchases{:colspan => (columns.length + ((has_actions) ? 1 : 0))}
+          There are no messages to display in this folder.
+    - else
+      - purchases.each do |purchase|
+        %tr
+          -columns.each do |col|
+            %td{:class => '%s_column' % col}
+              - case col
+              - when :item
+                =link_to purchase.item.title, purchase.item
+              - when :item_with_notes
+                =link_to purchase.item.title, purchase.item
+                %p
+                  %em=purchase.fulfillment_notes
+              - when :purchaser
+                =link_to purchase.purchaser.name, purchase.purchaser
+              - when :creator
+                =link_to purchase.item.creator.name, purchase.item.creator
+              - when :quantity_purchased
+                =purchase.quantity_purchased
+              - when :price
+                =btc_money purchase.item.price
+              - when :total_price
+                =btc_money purchase.total
+              - when :payment_sent_at
+                =l purchase.payment_sent_at, :format => :short if purchase.payment_sent_at
+              - when :item_sent_at
+                =l purchase.item_sent_at, :format => :short if purchase.item_sent_at
+          -if has_actions
+            %td.actions_column
+              -actions.each do |action|
+                - case action
+                - when :mark_fulfilled
+                  =link_to t('.%s' % action), 
+                    mark_fulfilled_users_url(current_user, purchase), 
+                    :class => 'btn btn-mini btn-primary',
+                    :title => '"%s" by %s' % [purchase.item.title, purchase.purchaser.name],
+                    :rel => 'mark_fulfilled'
+                - when :mark_paid
+                  =link_to t('.%s' % action), 
+                    mark_paid_users_url(current_user, purchase), 
+                    :class => 'btn btn-mini btn-primary', :method => :post,
+                    :data => {:confirm => t('.mark_paid_confirm')}
+    - if has_click_for_more
+      %tr
+        %td(colspan=6)
+          %span.pull-right
+            =link_to t('.click_for_more'), click_for_more_url
+-unless has_click_for_more
+  =paginate purchases

@@ -1,0 +1,8 @@
+<p>You received a CoinPost notification:</p>
+<p><strong>Subject:</strong> <%= @notification.subject.html_safe? ? @notification.subject : strip_tags(@notification.subject) %>
+<p><strong>Message:</strong></p>
+<blockquote>
+  <p>
+    <%= raw @notification.body %>
+  </p>
+</blockquote>

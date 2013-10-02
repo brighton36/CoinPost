@@ -1,0 +1,219 @@
+window.enable_form_controls = (form, controls_selector) ->
+  for button in $(form).find(controls_selector)
+    $(button).attr 'disabled', false
+    $(button).unbind 'click.stop_propagation'
+  $(form).find('.loading_indicator').hide()
+
+window.disable_form_controls = (form, controls_selector) ->
+  for button in $(form).find(controls_selector)
+    $(button).attr 'disabled', true
+    $(button).bind 'click.stop_propagation', (e) -> e.stopImmediatePropagation()
+  $(form).find('.loading_indicator').show()
+
+window.clear_form_errors = (form) ->
+  for control_group in $(form).find('.control-group.error')
+    $(control_group).removeClass('error')
+    $(control_group).find('.input .help-inline').remove()
+
+window.form_errors_from_ajax = (form, status) ->
+  response = jQuery.parseJSON(status.responseText)
+  prefix = $(form).attr('id').match(/^[^_]+_(.+?)(?:$|_[\d]+)/)[1]
+  
+  for attr, errors of response.errors
+    control_group = $(form).find([ '#'+prefix, attr, 'input' ].join('_'))
+    control_group.addClass('error')
+    control_group.find('.input').append([
+      '<span class="help-inline">', errors.join(' and '), '</span>'].join(''))
+
+$(document).ready ->
+  # Let's detect the timezone:
+  olson_zone = "Etc/UTC"
+  timezone = jstz.determine_timezone().timezone
+  if timezone != 'undefined'
+    timezone.ambiguity_check()
+    olson_zone = timezone.olson_tz
+
+  $.cookie 'tz_offset', olson_zone, {path: '/', expires: 7}
+
+  # Initialize any datepickers:
+  $('.date_picker').each (i,e) -> $(e).datepicker()
+
+  # This handles the onchange event for the currency selector in the header:
+  # NOTE: This trigger has to be registered before the selectpicker registration
+  # for some weird reason on some browsers:
+  $('#user_preffered_currency').change (e) -> 
+    window.location.href = window.location.pathname + '?user_currency='+$(@).val()
+      
+  # Select Pickers:
+  $('.selectpicker').selectpicker()
+
+  # Initialize any tooltips:
+  $('a[rel=tooltip]').tooltip()
+
+  # We need to hook into message-send and purchase-create modals. Mostly these
+  # Modals are handled the same:
+  if $('.modal .modal-body_form').length > 0
+    for modal in $('.modal')
+      if $(modal).find('.modal-body_form')
+        $(modal).on 'hidden', ->
+          window.clear_form_errors @
+          $(@).find('.close_actions, .modal-body_success').hide()
+          $(@).find('.actions, .modal-body_form').show()
+
+        for form in $(modal).find('form')
+          $(form).bind "ajax:beforeSend", ->
+            window.disable_form_controls @, '.actions .btn, .close'
+            window.clear_form_errors @
+   
+          $(form).bind "ajax:error", (xhr, status, error) ->
+            window.form_errors_from_ajax @, status          
+            window.enable_form_controls @, '.actions .btn, .close'
+
+          $(form).bind "ajax:success", (data, status, xhr) ->
+            form = @
+            $(form).find('.modal-body_form').fadeOut 'fast', -> 
+              $(form).find('.close_actions').show()
+              $(form).find('.actions').hide() 
+              $(form).find('.modal-body_success').fadeIn 'fast', -> 
+                window.enable_form_controls form, '.actions .btn, .close'
+
+  # This resets the form controls to their default values in a modal-minimize
+  # for the case of an item question modal:
+  if $('#ask_seller_a_question').length > 0
+    $('#ask_seller_a_question').on 'hidden', ->
+      tinymce.get($(@).find('textarea').attr('id')).setContent('')
+  
+  # This resets the form controls to their default values in a modal-minimize
+  # for the case of an item question modal:
+  if $('#send_user_message').length > 0
+    $('#send_user_message').on 'hidden', ->
+      $(@).find('.modal-body_form input').val('')
+      tinymce.get($(@).find('textarea').attr('id')).setContent('')
+  
+  # This is for the login/forgot password/create an account modal:
+  if $('#login_modal').length > 0
+    lm = $('#login_modal')
+    
+    # A little DRYness can't hurt:
+    out_and_in = (el, sel_out, sel_in, after = null) ->
+      el.find(sel_out).fadeOut 'fast', -> el.find(sel_in, 'fast').fadeIn 'fast', after
+
+    swap_body = (el, sel_out, sel_in, after = null) ->
+      el.find(sel_out).fadeOut 'fast', -> 
+        in_body = el.find sel_in
+        
+        modal_height = in_body.outerHeight()
+        modal_height += el.find('.modal-header').outerHeight()
+        # This is mostly to accomodate the padding:
+        modal_height += el.find('.modal-body').outerHeight() 
+
+        el.animate {height: modal_height+'px'}, 'fast', 'swing', -> 
+          in_body.fadeIn 'fast', after
+
+    clear_login_form_errors = (sel) ->
+      $(sel).find('.form-error').remove()
+      $(sel).find('.error').removeClass('error')
+
+    # This will search the entire document for any anchors which need to toggle
+    # the authentication required variant of this login modal
+    for atoggle in $('a.toggle_auth_required')
+      $(atoggle).bind 'click.toggle_login', (e) -> 
+        e.preventDefault()
+        lm.find('.modal-header h3').css('display', 'none')
+        lm.find('.modal-header h3.account_required').css('display', 'block')
+        lm.modal('show')
+
+    # Now let's apply the DRY to events:
+    lm.find('#remember_password_link').click ->
+      out_and_in lm, '.forgot_password', '.have_an_account', ->
+        clear_login_form_errors(lm) 
+
+    lm.find('#forgot_password_link').click ->
+      out_and_in lm, '.have_an_account', '.forgot_password'
+
+    lm.find('#back_to_login').click ->
+      lm.find('.have_an_account').css('display', 'block')
+      lm.find('.forgot_password').css('display', 'none')
+      out_and_in lm, '.modal-header .create_account', '.modal-header .sign_in_or_create'
+      swap_body lm, '.modal-body_create', '.modal-body_login', ->
+        window.clear_form_errors(lm.find('#create_user') )
+      
+    lm.find('#create_account_btn').click ->
+      Recaptcha.create <%=Recaptcha.configuration.public_key.to_json%>, 
+        'create_account_captcha', {theme: "clean"} 
+      
+      # NOTE: we may need to swap out something other than the sign_in_or_create
+      # if they tried to access an auth-required link
+      swap_out = null
+      for header in lm.find('.modal-header h3')
+        if $(header).css('display') == 'block'
+          swap_out = header
+          break
+      
+      out_and_in lm, swap_out, '.modal-header .create_account'
+      swap_body lm, '.modal-body_login', '.modal-body_create', ->
+        clear_login_form_errors(lm) 
+    
+    lm.on 'hidden', -> 
+      $(@).find('.modal-header h3').css('display', 'none')
+      $(@).find('.modal-header h3.sign_in_or_create').css('display', 'block')
+
+      $(@).find('.have_an_account').css('display', 'block')
+      $(@).find('.forgot_password').css('display', 'none')
+
+      $(@).find('.modal-body_login').css('display', 'block')
+      $(@).find('.modal-body_create').css('display', 'none')
+      $(@).find('.modal-body_password_reset_sent').css('display', 'none')
+      $(@).find('.modal-body_created_user').css('display', 'none')
+  
+      $(@).height(window.login_modal_default_height)
+      window.clear_form_errors(@)
+      clear_login_form_errors(@) 
+
+    lm.on 'show', -> 
+      # This is a total hack, but it was the only way I could re-set the damn
+      # height of this thing:
+      window.login_modal_default_height = $(@).outerHeight()
+
+    # Let's do all the login/forgot/create ajax work:
+    for form in lm.find('form')
+      $(form).bind "ajax:beforeSend", ->
+        window.clear_form_errors(@)
+        window.disable_form_controls lm, '.btn, .close'
+        clear_login_form_errors(@)
+
+      $(form).bind "ajax:error", (xhr, status, error) ->
+        window.enable_form_controls lm, '.btn, .close'
+
+    # Handle Login Form
+    lm.find('#user_login_form').bind "ajax:success", (data, status, xhr) ->
+      $('#login_modal').fadeOut 'fast', ->
+      window.location.reload()
+
+    lm.find('#user_login_form').bind "ajax:error", (data, status, xhr) ->
+      lm.find('.have_an_account h3').after('<span class="form-error">Invalid e-email and/or password</span>')
+      $(this).find('#session_user_email_input, #session_user_password_input').addClass('error')
+
+    # Handle Forgot Password Form
+    lm.find('#forgot_password_form').bind "ajax:success", (data, status, xhr) ->
+      window.enable_form_controls lm, '.btn, .close'
+      response = jQuery.parseJSON(status)
+      if response
+        swap_body lm, '.modal-body_login', '.modal-body_password_reset_sent', ->
+          lm.find('.forgot_password input[type=email]').val('')
+      else
+        lm.find('.forgot_password p').after('<span class="form-error">Invalid e-email or unknown account.</span>')
+        $(this).find('#password_user_email_input').addClass('error')
+
+    # Handle Account create form
+    lm.find('#create_user').bind "ajax:error", (xhr, status, error) ->
+      Recaptcha.reload()
+      $(@).prepend('<span class="form-error">We had some error(s) while trying to create your account.</span>')
+      window.form_errors_from_ajax @, status          
+      window.enable_form_controls @, '.btn, .close'
+
+    lm.find('#create_user').bind "ajax:success", (data, status, xhr) ->
+      swap_body lm, '.modal-body_create', '.modal-body_created_user', ->
+        lm.find('#create_user input[type=email], #create_user input[type=text], #create_user input[type=password]').val('')
+        window.enable_form_controls lm, '.btn, .close'
+    

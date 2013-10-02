@@ -1,0 +1,9 @@
+-buy_label = raw('<i class="icon-ok icon-white"></i> Buy this Item')
+-buy_options = { :class => %w(btn btn-primary btn-large buy_item_btn) }
+-if user == item.creator
+  =link_to buy_label, '#', buy_options.merge(:data => {:confirm => 'Sorry, but you are not permitted to purchase your own items.'})
+-elsif user && item.is_purchaseable
+  =link_to buy_label, '#item_purchase_modal', buy_options.merge({'data-toggle' => 'modal'})
+-else
+  -buy_options[:class] += ['toggle_auth_required']
+  =link_to buy_label, '#', buy_options

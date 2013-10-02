@@ -1,0 +1,29 @@
+=semantic_form_for purchase, 
+  :url => leave_feedback_users_url(current_user, purchase), 
+  :remote => true, :html => {:class => 'leave_feedback'} do |f|
+  .row.feedback_row
+    %hr          
+    .span2
+      %ul.thumbnails
+        -if purchase.item.category_listing_thumbnail
+          %li=link_to cw_image( purchase.item.category_listing_thumbnail,
+            :alt => ('%s Thumbnail' % purchase.item.title) ), purchase.item, :class=> 'thumbnail'
+    .span6
+      -if relationship == :bought_from
+        %h4=raw '%s from %s' %[ h(purchase.item.title), 
+          link_to(h(purchase.item.creator.name), purchase.item.creator)]
+        =f.input :rating_on_seller, :as => :radio, :label => 'Your opinion of this seller:',
+          :collection => { "Positive" => 1, "Negative" => -1 }
+      -else
+        %h4=raw '%s to %s' %[ h(purchase.item.title), 
+          link_to(h(purchase.purchaser.name), purchase.purchaser.name)]
+        =f.input :rating_on_purchaser, :as => :radio, :label => 'Your opinion of this buyer:',
+          :collection => { "Positive" => 1, "Negative" => -1 }
+
+      =f.input ( relationship == :bought_from ) ? :comment_on_seller : :comment_on_purchaser, 
+        :input_html => {:rows => 3}, :label => false,
+        :placeholder => "Any additional notes or comments that you think would be useful to others?"
+      =f.buttons do
+        =f.commit_button :leave_feedback, :label => "Leave Feedback"
+        =image_tag '/images/loading.gif', :size => '32x32', 
+          :alt => 'Loading', :class => 'loading_indicator hide'

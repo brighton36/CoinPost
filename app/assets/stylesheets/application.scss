@@ -1,0 +1,444 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+*/
+
+/* Arian Colors */
+$orange: #eca525; /* Why would you repeat colors below? */
+$lightGrey: #eee;
+$darkGrey: #333;
+$medGrey: #999;
+
+$textColor: #848587;
+$linkColor: #eca525;
+$btnPrimaryBackground: #eca525;
+$btnPrimaryBackgroundHighlight: #db9a1a;
+@import "bootstrap";
+@import 'bootstrap-datepicker';
+
+@mixin center-this(){
+  width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+body{
+  background: url('/images/ancilliary-background.png') repeat-x;
+  color:$darkGrey;
+}
+body#tinymce{
+  background:white;
+  padding:5px 10px;
+}
+
+.down24{
+  margin-top: 24px;
+}
+
+/* This .hidden came from 'formtastic-bootstrap.css', which I think is already in bootstrap... */
+.hidden { display: none;}
+.clearfix:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+.modal {
+  form{
+    margin-bottom:0;
+  }
+  .loading_indicator {
+    margin-right: 8px;
+    display: none;
+  }
+}
+
+hr.long-hr{
+  background: url('/images/long-hr-divider.png') no-repeat;
+  height:25px;
+  width:690px;
+  margin: 0;
+}
+hr.short-hr{
+  background: url('/images/short-hr-background.png') no-repeat;
+  height:20px;
+  width:180px;
+  margin:0;
+}
+
+#ie8less-container{
+  z-index: 9999;
+  position: fixed;
+  left: 0px;
+  border-bottom: 2px solid #666;
+  top: 0px;
+  margin: 0px;
+  padding: 8px 0 3px 0px;
+  width: 100%;
+  color: #4F4D3B;
+  background: #FFFCDF;
+  background-position: initial initial;
+  background-repeat: initial initial;
+  text-align:center;
+  a{
+    color:$blue
+  }
+}
+
+/* This controls how far from the top of the screen the login box appears */
+#login_modal.modal.fade.in { top: 40% }
+
+#login_modal {
+  height:auto!important;
+  #create_account_btn{ margin-top: 12px; margin-bottom: 8px; }
+  .control-group { margin-bottom: 0px; }
+  #create_account_captcha{ width: 442px; height: 107px;}
+  
+  .form-error{
+    color: #B94A48; 
+    font-size: 1.1em; 
+    font-weight: bold;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .modal-body{ 
+    max-height: 700px;
+    padding-bottom:10px;
+  }  
+  .modal-body_create{ 
+    .create.btn{ margin-top: 12px; margin-bottom: 8px; }
+    .help-inline{
+      width: 400px;
+      margin-top:-12px;
+    }
+    .input-xlarge{
+      width:430px;
+    }
+  }  
+  .modal-body_password_reset_sent{
+    height: 177px;
+  }
+  .modal-body_created_user{
+    margin-bottom:5px;
+  }
+  .input-large{width:240px;}
+  .have_an_account{
+    margin-left:0;
+    .create.btn{ margin-top: 4px; margin-bottom: 8px; }
+  }
+  .forgot_password{ 
+    display:none;
+    margin-left:0;
+    .create.btn{ margin-top: 4px; margin-bottom: 8px; }
+    #user_email{width:240px;}
+  } 
+  .dont_have_account{ 
+    padding-left: 10px;
+    border-left: 1px solid $lightGrey; 
+    float: right; 
+    margin: 0;
+  }
+}
+
+header{
+  @include center-this;
+
+  .navbar{
+    position:relative;
+    .navbar-inner{
+      background:none;
+      box-shadow:none;
+      filter:none;
+      padding:0;
+      .brand{
+        float:none;
+        height: 80px;
+        width:323px;
+      }
+      #nav-wrapper{
+        background: $lightGrey;
+        border-radius:6px;
+      }
+      .nav{
+        background-color: $lightGrey;
+        border-radius: 6px 6px 6px 6px;
+        margin:0;
+        li{
+          border-right: 1px solid #ddd;
+        }
+        li > a{
+          font-size: 15px;
+          text-shadow: white 1px 1px 1px;
+        }
+        li > a:hover{
+          color:$orange;
+        }
+        .dropdown-menu{
+          li{height:auto!important}
+          li > a{
+            color: $medGrey;
+          }
+          li > a:hover{
+            color:white;
+            text-shadow: $medGrey 1px 1px 1px;
+          }
+        }
+      }
+      #main-nav{
+        height:40px;
+        li{
+          height:40px;
+        }
+        li > a{
+          padding: 10px 15px 11px;
+        }
+        .active > a, .active > a:hover {
+          background: $orange;
+          color: white;
+          text-shadow: $medGrey 1px 1px 1px; 
+        }
+        li > a:hover{
+          color: $orange;
+        }        
+        li:first-child > a{
+          border-radius: 6px 0 0 6px;
+        }
+      }
+      #user-options{
+        border-left:1px solid #ddd!important;
+        border-radius: 0 6px 6px 0!important;
+        height:40px;
+        li {
+          height:40px;
+          border-right:none!important;
+        }
+        b.caret{
+          border-bottom-color: $darkGrey;
+          border-top-color: $darkGrey;
+        }
+        li > a:hover > b.caret{
+          border-bottom-color:$orange; 
+          border-top-color: $orange;
+        }
+        .open, .active {
+          background-color: $orange;
+          border-radius: 0 6px 6px 0;
+        }
+        .open > a, .active > a{
+          color: white;
+          text-shadow:$medGrey 1px 1px 1px;
+        }
+        .open > a:hover, .active > a:hover{
+          border-radius:0 6px 6px 0;
+          background-color:$orange;
+        }
+        .open > .dropdown-toggle > b.caret,.active > .dropdown-toggle > b.caret{
+          border-bottom-color:white;
+          border-top-color: white;
+        }
+      }
+      #conversion-info{
+        background: #ebebeb;
+        color: $darkGrey;
+        position:absolute!important;
+        bottom: 60px;
+        right:0;
+        margin:0;
+        list-style:none;
+        border-radius: 6px;
+        -moz-box-shadow: 0 0 5px $darkGrey;
+        -webkit-box-shadow: 0 0 $darkGrey;
+        box-shadow: 0 0 5px $darkGrey;
+        padding: 10px 10px 10px 14px;
+        select{ width: 80px; }
+        li{
+          padding:2px;
+          line-height:20px;
+          text-align:center;
+          a{
+            float:left;
+            display:block;
+            margin-top:9px; 
+            font-size:14px;
+            font-weight:bolder;
+            color: $darkGrey;
+            text-decoration:none;
+            text-shadow: white 1px 1px 1px;
+          }
+        }
+        li.conversion {
+          padding: 0px 0px 0px 0px;
+          a.exchange_rate{
+            margin-right:5px;
+            margin-bottom:0;
+            color: $blue;
+            font-size:15px;
+            font-weight: 400;
+            text-shadow: white 1px 1px 1px;
+            img{
+              margin-top:2px;
+            }
+          }
+        }
+        .bootstrap-select{
+          float:left;
+          display:block;
+          margin-bottom:0;
+          width: 100px;
+          span.filter-option{ width: 80px; }
+          button{ width: 100px; }
+          a{font-weight:normal;}
+        }
+      }
+    }
+  }
+  .hero-unit{
+    @include center-this;
+
+    background:transparent url('/images/hero-background.png') no-repeat;
+    padding:25px 0 38px;
+    margin-bottom: 30px;
+    .contents{
+      margin-left: 40px;
+      h2{
+        font-size:35px;
+        margin-bottom: 10px;
+      }
+      p{
+        font-size: 14px;
+        width: 270px;
+        line-height:24px;
+      }
+    }
+  }
+}  
+
+section {
+  #main-content.container{
+    background: #fff url('/images/main-content-gradient.png') repeat-x;
+    border-radius: 6px;
+    border: 1px solid $lightGrey;
+    .span3 {   
+      color: $orange;
+      padding:10px;
+      width:200px;
+      ul{
+        li{
+          background: url('/images/categorie-menu-li-background.png') no-repeat;
+          padding-top: 8px;
+        }
+        li > a{
+          font-size: 14px;
+          padding-left:5px;
+          color: $medGrey;
+          margin-bottom:5px;
+        }
+        li > a:hover{
+          background-color: $orange;
+          color:white;
+          text-shadow: 1px 1px 1px $medGrey;
+        }
+        .browse-link > a{
+          color: $orange;
+        }
+      }
+    }
+    .span9 {
+      margin:0;
+      padding:10px;
+      width: 690px;
+      h1, h2{
+        font-size:20px;
+        line-height:27px;
+        margin-bottom: 10px;
+      }
+      .row-fluid{
+        margin-bottom: 20px;
+        .span6{
+          h3{
+            margin-bottom: 5px;
+          }
+          .price{
+            margin-left: 8px;
+          }
+          img.thumbnail{
+            margin: 5px 15px 5px 0;
+            background: $lightGrey;
+          }
+        }
+      }
+      #browse-all-items-btn{
+        margin: 5px 0 15px 18px;
+      }
+    }
+    #get-coins{
+      div{
+        padding: 10px 0;
+        h3{
+          margin:0 0 5px 0;
+        }
+        .span5{margin-left:0}
+        .span4{
+          margin-left:0;
+          img{
+            width:auto;
+            height:auto;
+            float:left;
+            margin: 5px 0 0 50px;
+          }
+        }
+      }
+    }
+   
+  }
+}  
+
+footer{
+  @include center-this;
+
+  margin-top:20px;
+  .navbar{
+    .navbar-inner{
+      background: $lightGrey;
+      filter:none;
+      min-height: 40px;
+      a{
+        text-shadow: white 1px 1px 1px;
+      }
+      a:hover{
+        color: $orange;
+      }
+      .active > a, .active > a:hover {
+        background: none;
+        color: $orange;
+        text-decoration: none;
+        text-shadow:white 1px 1px 1px;
+      }
+      img{
+        padding: 0 0 1px 3px;
+        height:8px;
+      }
+    }
+  }
+  .copyright {
+    width: 100%;
+    text-align:center;
+    p{
+      font-size: 12px;
+      color: $medGrey;
+      margin: 10px auto;
+    }
+  }
+}

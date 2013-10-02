@@ -1,0 +1,11 @@
+.question_row.row
+  .span1.question_label Item:
+  .span5.question_value= raw '%s (%s)' % [h(item.title), 
+    btc_money(item.price)]
+.question_row.row
+  .span1.question_label Seller:
+  .span5.question_value= item.creator.name
+=tinymce_minimal :height => '250', :width => '530'
+=form.input :body, :required => true, :input_html => {:class => 'tinymce'},
+  :label => "What would you like to know:"
+-#%p When the seller responds to your question, their answer will arrive in your inbox.

@@ -1,0 +1,68 @@
+-show_select = (local_assigns.has_key?(:table_actions) && table_actions.length > 0)
+- unless local_assigns.try(:[],:click_for_more_url)
+  .row
+    .span6.pull-left
+      =t '.message_count_teaser', :count => message_count, :mail_folder => folder_name
+
+    - if local_assigns.has_key? :table_actions
+      .span3.pull-right
+        -if table_actions.include? :trash
+          %button.pull-right.btn.btn-danger(type = 'submit')
+            %i.icon-trash.icon-white
+            =t '.trash_selected'
+        -if table_actions.include? :untrash
+          %button.pull-right.btn(type = 'submit')
+            %i.icon-trash.icon-repeat
+            =t '.untrash_selected'
+
+%table{:class => ['table', 'table-striped', 'table-bordered', 'table-condensed',
+'message_listing_table'], :id => '%s_messages_table' % action_name }
+  %thead
+    %tr
+      - if show_select
+        %th.select_column
+      -columns.each do |col|
+        %th{:class => '%s_column' % col}=col.to_s.titleize
+      %th.actions_column
+  %tbody
+    - if messages.length == 0
+      %tr
+        %td.no_messages{:colspan => columns.length + 1 + (show_select ? 1 : 0)}
+          There are no messages to display in this folder.
+    - else
+      - messages.each do |message|
+        %tr{ :class => (message.is_unread?(current_user)) ? 'unread' : '' }
+          - if show_select
+            %td.select_column
+              = check_box_tag '', message.id, false,  name: "message_ids[]"
+          - columns.each do |col|
+            %td{:class => '%s_column' % col}
+              - case col
+              - when :to
+                -recipients = message.recipients.find_all{|u| u != current_user }
+                = link_to recipients.first.name, recipients.first.name
+              - when :from
+                = link_to message.sender.name, message.sender
+              - when :subject
+                -if message.is_unread?(current_user)
+                  %i.icon-envelope
+                -if permitted_to? :show, message
+                  =link_to message.subject, user_message_url(current_user,message)
+                -else
+                  =message.subject
+              - when :sent_at
+                = '%s ago' % time_ago_in_words(message.created_at)
+          %td.actions_column
+            -if permitted_to? :show, message
+              =link_to t('.show'), user_message_url(current_user, message), 
+                :class => 'btn btn-mini btn-primary'
+            -if permitted_to? :reply, message
+              =link_to t('.reply'), reply_user_message_url(current_user, message), 
+                :class => 'btn btn-mini'
+    - if local_assigns.has_key? :click_for_more_url
+      %tr
+        %td(colspan=6)
+          %span.pull-right
+            =link_to 'Click here for more messages', click_for_more_url
+- unless local_assigns.try(:[],:click_for_more_url)
+  =paginate messages

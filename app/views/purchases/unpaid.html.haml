@@ -1,0 +1,7 @@
+%hr.long-hr
+%p=t '.heading_count_teaser', :count => @purchases_count
+
+=render 'purchase_listing_table', 
+  :purchases => @purchases, 
+  :columns => [:item, :creator, :quantity_purchased, :total_price],
+  :actions => [:mark_paid]

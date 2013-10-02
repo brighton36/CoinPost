@@ -1,0 +1,15 @@
+db/*.sqlite3
+db/*.sqlite3-journal
+db/schema.rb
+log/*.log
+log/ssl_error_log
+tmp/
+public/assets/*
+*.swp
+*.swo
+.rspec
+tags
+-
+.DS_Store
+public/images/item-images
+public/sitemap.xml

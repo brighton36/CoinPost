@@ -1,0 +1,5 @@
+%hr.long-hr
+%p=t '.items_displayed', :total => @items.count
+=render 'item_table', :items => @items, :click_for_more_url => nil, 
+  :table_id => '%s_items_table' % @table
+%p=link_to "Go Back to Dashboard", dashboard_index_path

@@ -1,0 +1,163 @@
+// Place all the styles related to the Dashboard controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+$lightGrey: #eee;
+$darkGrey: #333;
+$medGrey: #999;
+$orange: #eca525;
+$blue: #049CDB;
+
+.item_listing {
+  th.row_actions {
+    width: 130px;
+  }
+  th.date {
+    width: 80px;
+  }
+  th.price {
+    width: 80px;
+  }
+}
+
+#dashboard_nav_block{
+  background-color:white;
+  -moz-box-shadow: 0 0 5px $medGrey;
+  -webkit-box-shadow: 0 0 $medGrey;
+  box-shadow: 0 0 5px $medGrey;
+
+  ul {
+    padding-left:0;
+    padding-right:0;
+    li{
+      background: #fff none!important;
+      a.no_link_icon {
+        padding-left: 30px!important;
+      }
+      a {
+        padding:2px 0 4px 10px!important;
+        margin: 0 -20px!important;
+        text-shadow:1px 1px 1px white;
+        i {
+          margin-top: 2px;
+        }
+      }
+      a:hover {
+        i {
+          background-image: url("/assets/glyphicons-halflings-white.png");
+        }
+      }
+    }
+    li:hover, li.active {
+      a{
+        background-color:$orange;
+        color:white!important;
+        text-shadow:1px 1px 1px $medGrey;
+      }
+      .badge{
+        color:$orange;
+        background-color:white;
+      }
+    }
+    li.nav-header{
+      background: url("/images/categorie-menu-li-background.png") no-repeat scroll 0 0 transparent!important;
+      font-size:12px;
+      font-weight:bold;
+      color:$orange;
+      margin:20px 0 0 -5px;
+      padding:0;
+    }
+    li.nav-header:first-child{
+      margin-top:0;
+    }
+  }
+
+  .badge { 
+    font-size: 7pt; 
+    padding: 1px 6px 1px 5px; 
+  }
+  .badge-info{
+    background-color:$orange;
+  }
+}
+
+.seller_feedback{
+  .thumbnail{
+    margin-top:4px;
+  }
+  .feedback_row hr{
+    margin:0 0 15px 15px;
+  }
+}
+
+table {
+  .actions_column{
+    text-align: center;
+  }
+}
+
+#new_item {
+  fieldset.inputs{
+    margin-bottom:15px;
+    legend{
+      margin-bottom:0;
+    }
+    abbr{
+      color:red;
+      margin-left:2px;
+    }
+  }
+  
+  #item_title_input, #item_location_input, #item_quantity_listed_input, #item_btc_receive_address_input{
+    label{
+      float:left;
+      width: 200px;
+    }
+    .input{
+      display:inline-block;
+      input{
+        margin-bottom:0;
+      }
+      .input-xxlarge{
+        width: 450px;
+      }
+      .help-inline{
+        display:block
+      }
+    }
+  }
+  #item_price_input{
+    .input{
+      padding: 5px 10px 5px 20px;
+    }
+  }
+  #item_categories_input{
+    .help-inline{
+      display:block
+    }
+  }
+  #item_description_input{
+    margin: 15px 0;
+    #item_description_tbl{
+      width:670px!important;
+    }
+  }
+}
+
+#edit_user{
+  label{
+    float:left;
+    width: 180px;
+  }
+  .input{
+    display:inline-block;
+    input{
+      margin-bottom:5px;
+    }
+    .input-xlarge{
+      width: 450px;
+    }
+    .help-inline{
+      display:block
+    }
+  }
+}

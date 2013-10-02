@@ -1,0 +1,8 @@
+=render 'show_item'
+
+=semantic_form_for( @item ) do |f|
+  =serialize_to_hidden :item 
+  =f.commit_button :button_html => {:class => 'btn-primary btn-large'}
+  =button_tag t('formtastic.actions.back_to_edit_images', :model => @item.class.to_s.humanize),
+    :class => 'btn btn-large', :id => 'new_back_btn',
+    :value => url_for(:action => :add_images)

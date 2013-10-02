@@ -1,0 +1,63 @@
+.well#dashboard_nav_block
+  %ul.nav.nav-list
+    %li.nav-header.active User Dashboard
+    =render 'link', :title => 'Home', :url => dashboard_index_path,
+      :active => /\Adashboard\#index\Z/, 
+      :icon => 'icon-home'
+    =render 'link', :title => 'Leave Feedback', 
+      :url => needs_feedback_users_url(@user),
+      :active => /\Apurchases\#needs_feedback\Z/, 
+      :icon => 'icon-info-sign',
+      :badged => @needs_feedback_count
+
+    %li.nav-header.active Messages and Notices
+    =render 'link', :title => 'Inbox', 
+      :url => messages_inbox_users_path(@user),
+      :active => /\Amessages\#inbox\Z/, 
+      :icon => 'icon-inbox',
+      :badged => @message_count
+    =render 'link', :title => 'Sent Messages', 
+      :url => messages_sentbox_users_path(@user),
+      :active => /\Amessages\#sentbox\Z/
+    =render 'link', :title => 'Trashed Messages', 
+      :url => messages_trash_users_path(@user),
+      :active => /\Amessages\#trash\Z/
+
+    %li.nav-header.active Manage Purchases
+    =render 'link', :title => 'Requiring Payment', 
+      :url => purchases_unpaid_users_path(@user),
+      :active => /\Apurchases\#unpaid\Z/, 
+      :icon => 'icon-gift',
+      :badged => @unpaid_purchases_count
+    =render 'link', :title => 'Paid Purchases', 
+      :url => purchases_paid_users_path(@user),
+      :active => /\Apurchases\#paid\Z/
+
+    %li.nav-header.active Manage Sales
+    =render 'link', :title => 'Requiring Fulfillment', 
+      :url => sales_unfulfilled_users_path(@user),
+      :active => /\Apurchases\#unfulfilled\Z/, 
+      :icon => 'icon-plane',
+      :badged => @unfulfilled_orders_count
+    =render 'link', :title => 'Fulfilled', 
+      :url => sales_fulfilled_users_path(@user),
+      :active => /\Apurchases\#fulfilled\Z/
+
+    %li.nav-header.active Manage Postings
+    =render 'link', :title => 'Post a New Item', :url => sell_items_path,
+      :active => /\Aitems\#(?:new|create|preview|add_images)\Z/, 
+      :icon => 'icon-plus'
+    =render 'link', :title => 'Manage Active Items', 
+      :url => active_items_dashboard_index_path,
+      :active => /\Adashboard\#active_items\Z/ 
+    =render 'link', :title => 'Manage Pending Items', 
+      :url => pending_items_dashboard_index_path,
+      :active => /\Adashboard\#pending_items\Z/ 
+    =render 'link', :title => 'View Expired Items', 
+      :url => expired_items_dashboard_index_path,
+      :active => /\Adashboard\#expired_items\Z/ 
+    %li.nav-header.active Your Account
+    =render 'link', :title => 'Edit your user profile', 
+      :url => edit_user_registration_path,
+      :active => /\Adevise\#registrations\Z/,
+      :icon => 'icon-user'

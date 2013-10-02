@@ -1,0 +1,12 @@
+.navbar
+  .navbar-inner
+    .nav-collapse
+      %ul.nav
+        -header_navigation.each_with_index do |nav, i|
+          %li{:class => ( nav.is_active? ? 'active' : '') }
+            =link_to nav.i18_label, nav.url, :class => nav.classes
+      %ul.nav.pull-right
+        %li
+          %a(href="#") 
+            Back to top
+            %img{:src => '/images/back-to-top.png', :height => '8', :alt => 'Back to Top'}

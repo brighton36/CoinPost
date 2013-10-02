@@ -1,0 +1,19 @@
+#modal-gallery.modal.modal-gallery.hide.fade
+  .modal-header
+    %a.close{"data-dismiss" => "modal"} &times;
+    %h3.modal-title
+  .modal-body
+    .modal-image
+  .modal-footer
+    %a.btn.modal-download{:target => "_blank"}
+      %i.icon-download
+      %span Download
+    %a.btn.btn-success.modal-play.modal-slideshow{"data-slideshow" => "5000"}
+      %i.icon-play.icon-white
+      %span Slideshow
+    %a.btn.btn-info.modal-prev
+      %i.icon-arrow-left.icon-white
+      %span Previous
+    %a.btn.btn-primary.modal-next
+      %span Next
+      %i.icon-arrow-right.icon-white

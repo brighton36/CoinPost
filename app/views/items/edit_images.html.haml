@@ -1,0 +1,8 @@
+%p=raw RDiscount.new(t('.item_images_teaser')).to_html
+
+=render 'images_upload', :submit_url => item_images_path(@item)
+
+=semantic_form_for( @item, :url => {:action => :update_images} ) do |f|
+  =hidden_field :id, @item.friendly_id
+  =f.commit_button :update, :button_html => {:class => 'btn-primary btn-large'}
+  =link_to('Cancel',:back, :class => 'btn btn-small')

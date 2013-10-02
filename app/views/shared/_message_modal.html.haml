@@ -1,0 +1,28 @@
+.modal.hide.fade{'data-keyboard' => 'false', 'data-backdrop' => 'static', :id => modal_id}
+  =semantic_form_for message, :url => url, :remote => true, 
+    :html => {:class => 'message_create'} do |f|
+    .modal-header
+      %button.close{'data-dismiss' => 'modal' } ×
+      %h3=title
+    .modal-body
+      .modal-body_form= render msg_form,
+        ((local_assigns.has_key?(:msg_form_params)) ? msg_form_params : {} ).merge({:form => f})
+      .modal-body_success.hide
+        .row-fluid 
+          .span2
+            =image_tag '/images/green-checkmark.png', :alt => 'Green Checkmark',
+              :size => '64x64'
+          .span10
+            %h3 Your Message was sent Successfully
+            %p This message was placed in your Sent Items. When the seller responds to this message, their answer will arrive in your CoinPost Inbox (and you will receive a notification via e-mail).
+    .modal-footer
+      =f.buttons do
+        =image_tag '/images/loading.gif', :size => '32x32', 
+          :alt => 'Loading', :class => 'loading_indicator'
+        =link_to 'Cancel','#', :class => 'btn btn-small cancel',
+          'data-dismiss' => 'modal'
+        =f.commit_button :send_message, :label => commit_label,
+          :button_html => {:class => 'btn-primary'}
+      .close_actions.hide
+        =link_to 'Ok, Thanks!','#', :class => 'btn btn-small', 
+          'data-dismiss' => 'modal'

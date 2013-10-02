@@ -1,0 +1,12 @@
+#categories_block
+  %h3= @category ? ('%s Categories' % @category.title) : 'Browse by Category'
+  %ul.nav.nav-pills.nav-stacked
+    -if @categories.length > 0
+      -@categories.each do |cat|
+        %li=link_to "%s (%d)" % [cat[0].title, cat[1]], cat[0]
+    -else
+      %li (No subcategories)
+    -if @category.try(:parent)
+      %li.browse-link=link_to 'Back to %s' % @category.parent.title, @category.parent
+    -else
+      %li.browse-link=link_to 'Browse All Items', categories_path

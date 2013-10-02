@@ -1,0 +1,99 @@
+.modal.hide.fade{'data-keyboard' => 'false', 'data-backdrop' => 'static', :id => 'login_modal'}
+  .modal-header
+    %button.close{'data-dismiss' => 'modal' } ×
+    %h3.sign_in_or_create Sign-in or Create an Account
+    %h3.create_account.hidden Let's Create an Account?
+    %h3.account_required.hidden The feature you're trying to access requires an account
+  .modal-body
+    .modal-body_login
+      .row-fluid
+        .span6.have_an_account
+          =semantic_form_for User.new, :url => user_session_path, :remote => true,
+            :namespace => 'session', :html => {:id => 'user_login_form'} do |f|
+            %h3 Have an account?
+            =f.input :email, :required => true, :input_html => {:class => 'input-large'},
+              :label => "E-Mail Address:"
+            =f.input :password, :required => true, :input_html => {:class => 'input-large'},
+              :label => "Password:"
+            %label.checkbox
+              =check_box_tag 'user[remember_me]'
+              Remember Me
+            =f.buttons do
+              =f.commit_button :login, :label => "Sign-in",
+                :button_html => {:class => 'btn-primary'}
+              =image_tag '/images/loading.gif', :size => '32x32', 
+                :alt => 'Loading', :class => 'loading_indicator'
+            = link_to "Forgot your password?", '#', :id => 'forgot_password_link'
+        .span6.hidden.forgot_password
+          =semantic_form_for User.new, :url => user_password_path, :remote => true, 
+            :namespace => 'password', :html => { :id => 'forgot_password_form' } do |f|
+            %h3 Forgot your password?
+            %p That's OK, we can e-mail you a password reset link.
+            =f.input :email, :required => true, :input_html => {:class => 'input-large'},
+              :label => "E-Mail Address:"
+            =f.buttons do
+              =f.commit_button :email_instructions, :label => "E-mail me a reset link",
+                :button_html => {:class => 'btn-primary'}
+              =image_tag '/images/loading.gif', :size => '32x32', 
+                :alt => 'Loading', :class => 'loading_indicator'
+            = link_to "Oh wait, I remember my password", '#', :id => 'remember_password_link'
+        .span6.dont_have_account
+          %h3 Don't have an account?
+          %p We can fix that. Membership is <strong>completely free</strong>, and easy. 
+          %p Check out the benefits: 
+          %ul
+            %li List items for sale
+            %li Purchase items from others
+            %li Communicate with other users
+          =link_to 'Create an Account', '#', :class => 'btn btn-primary', 
+            :id => 'create_account_btn'
+          %p (We'll do it right here in this window)
+    .modal-body_create.hidden
+      =semantic_form_for User.new, :url => user_registration_path, :remote => true,
+        :html => { :id => 'create_user' } do |f|
+        =f.input :name, :required => true, :label => 'Pick a Username:',
+          :placeholder => "Doesn't have to be your real name",
+          :input_html => {:class => 'input-xlarge'}
+        =f.input :email, :required => true, :input_html => {:class => 'input-xlarge'},
+          :label => "Your e-mail address:"
+        =f.input :location,
+          :placeholder => 'Any approximation will work',
+          :label => "Where are you located? (Optional):",
+          :input_html => {:class => 'input-xlarge'}
+        =f.input :password, :required => true, 
+          :label => "Choose a password:",
+          :placeholder => 'Six characters, minimum',
+          :input_html => {:class => 'input-xlarge', :autocomplete => 'off'}
+        =f.input :password_confirmation, :required => true, 
+          :label => "Confirm your password:",
+          :placeholder => 'Six characters, minimum',
+          :input_html => {:class => 'input-xlarge', :autocomplete => 'off'}
+        #user_captcha_input.clearfix.required.control-group
+          %label(for = 'recaptcha_response_field') Tell us, are you a human?*
+          .input
+            #create_account_captcha
+        =f.buttons do
+          =f.commit_button 'Create my Account',
+            :button_html => {:class => 'btn-primary btn-large'}
+          =image_tag '/images/loading.gif', :size => '32x32', 
+            :alt => 'Loading', :class => 'loading_indicator'
+        = link_to "Oh wait, I do have an account", '#', :id => 'back_to_login'
+    .modal-body_password_reset_sent.hidden
+      %h3 Password Reset Instructions Sent
+      %p An e-email has been sent to the provided e-mail address. 
+      %p
+        Click on the provided link, and you will be redirected back to CoinPost 
+        and will be given the chance to reset your CoinPost password to a new one. 
+      %p (Try to remember it this time!)
+      %a.btn.btn-primary.btn-large{'href' => '#', 'data-dismiss' => 'modal' } Ok, Great!
+    .modal-body_created_user.hidden
+      %h3 User Account Created Successfully
+      %p However you must verify your e-mail address before you can continue.
+      %p 
+        An e-email has been sent to the e-mail address you provided. Inside this
+        e-mail is a link, which you must click on in order for your account to
+        be enabled.
+      %p 
+        Once you click on verification link in your e-mail, you can begin to post
+        and buy items on coinpost.com.
+      %a.btn.btn-primary.btn-large{'href' => '#', 'data-dismiss' => 'modal' } Ok, Great!

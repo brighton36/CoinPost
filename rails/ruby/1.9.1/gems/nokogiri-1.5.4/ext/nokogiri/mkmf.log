@@ -1,0 +1,440 @@
+package configuration for libxslt is not found
+package configuration for libxml-2.0
+cflags: -I/usr/local/Cellar/libxml2/2.8.0/include/libxml2  
+ldflags: -L/usr/local/Cellar/libxml2/2.8.0/lib
+libs: -lxml2  
+
+package configuration for libiconv is not found
+find_header: checking for libxml/parser.h... -------------------- yes
+
+"clang -o conftest -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1/x86_64-darwin11.3.0 -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1/ruby/backward -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1 -I. -I/usr/local/Cellar/libxml2/2.8.0/include/libxml2 -I/opt/local/include/libxml2 -I/usr/local/include/libxml2 -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/libxml2 -I/opt/local/include -I/usr/local/include -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include -I/usr/include -I/usr/include/libxml2 -I/Users/cderose/.rvm/usr/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE    -O3 -ggdb -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wshorten-64-to-32 -Wimplicit-function-declaration  -fno-common -pipe  -g -DXP_UNIX -I/usr/local/Cellar/libxml2/2.8.0/include/libxml2   conftest.c  -L. -L/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/lib -L/usr/local/Cellar/libxml2/2.8.0/lib -L/opt/local/lib -L/usr/local/lib -L/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/lib -L/usr/lib -L/Users/cderose/.rvm/usr/lib -L.  -L/usr/local/Cellar/libxml2/2.8.0/lib     -lxml2   -lruby.1.9.1  -lpthread -ldl -lobjc  "
+ld: warning: directory not found for option '-L/opt/local/lib'
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: int main() {return 0;}
+/* end */
+
+"clang -E -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1/x86_64-darwin11.3.0 -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1/ruby/backward -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1 -I. -I/usr/local/Cellar/libxml2/2.8.0/include/libxml2 -I/opt/local/include/libxml2 -I/usr/local/include/libxml2 -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/libxml2 -I/opt/local/include -I/usr/local/include -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include -I/usr/include -I/usr/include/libxml2 -I/Users/cderose/.rvm/usr/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE    -O3 -ggdb -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wshorten-64-to-32 -Wimplicit-function-declaration  -fno-common -pipe  -g -DXP_UNIX -I/usr/local/Cellar/libxml2/2.8.0/include/libxml2    conftest.c -o conftest.i"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <libxml/parser.h>
+/* end */
+
+--------------------
+
+find_header: checking for libxslt/xslt.h... -------------------- yes
+
+"clang -E -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1/x86_64-darwin11.3.0 -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1/ruby/backward -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1 -I. -I/usr/local/Cellar/libxml2/2.8.0/include/libxml2 -I/opt/local/include/libxml2 -I/usr/local/include/libxml2 -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/libxml2 -I/opt/local/include -I/usr/local/include -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include -I/usr/include -I/usr/include/libxml2 -I/Users/cderose/.rvm/usr/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE    -O3 -ggdb -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wshorten-64-to-32 -Wimplicit-function-declaration  -fno-common -pipe  -g -DXP_UNIX -I/usr/local/Cellar/libxml2/2.8.0/include/libxml2    conftest.c -o conftest.i"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <libxslt/xslt.h>
+/* end */
+
+--------------------
+
+find_header: checking for libexslt/exslt.h... -------------------- yes
+
+"clang -E -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1/x86_64-darwin11.3.0 -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1/ruby/backward -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1 -I. -I/usr/local/Cellar/libxml2/2.8.0/include/libxml2 -I/opt/local/include/libxml2 -I/usr/local/include/libxml2 -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/libxml2 -I/opt/local/include -I/usr/local/include -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include -I/usr/include -I/usr/include/libxml2 -I/Users/cderose/.rvm/usr/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE    -O3 -ggdb -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wshorten-64-to-32 -Wimplicit-function-declaration  -fno-common -pipe  -g -DXP_UNIX -I/usr/local/Cellar/libxml2/2.8.0/include/libxml2    conftest.c -o conftest.i"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <libexslt/exslt.h>
+/* end */
+
+--------------------
+
+have_func: checking for iconv_open() in iconv.h... -------------------- no
+
+"clang -o conftest -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1/x86_64-darwin11.3.0 -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1/ruby/backward -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1 -I. -I/usr/local/Cellar/libxml2/2.8.0/include/libxml2 -I/opt/local/include/libxml2 -I/usr/local/include/libxml2 -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/libxml2 -I/opt/local/include -I/usr/local/include -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include -I/usr/include -I/usr/include/libxml2 -I/Users/cderose/.rvm/usr/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE    -O3 -ggdb -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wshorten-64-to-32 -Wimplicit-function-declaration  -fno-common -pipe  -g -DXP_UNIX -I/usr/local/Cellar/libxml2/2.8.0/include/libxml2   conftest.c  -L. -L/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/lib -L/usr/local/Cellar/libxml2/2.8.0/lib -L/opt/local/lib -L/usr/local/lib -L/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/lib -L/usr/lib -L/Users/cderose/.rvm/usr/lib -L.  -L/usr/local/Cellar/libxml2/2.8.0/lib     -lxml2   -lruby.1.9.1  -lxml2   -lpthread -ldl -lobjc  "
+ld: warning: directory not found for option '-L/opt/local/lib'
+Undefined symbols for architecture x86_64:
+  "_iconv_open", referenced from:
+      _t in conftest-WWxhIc.o
+ld: symbol(s) not found for architecture x86_64
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <iconv.h>
+4: 
+5: /*top*/
+6: int main() {return 0;}
+7: int t() { void ((*volatile p)()); p = (void ((*)()))iconv_open; return 0; }
+/* end */
+
+"clang -o conftest -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1/x86_64-darwin11.3.0 -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1/ruby/backward -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1 -I. -I/usr/local/Cellar/libxml2/2.8.0/include/libxml2 -I/opt/local/include/libxml2 -I/usr/local/include/libxml2 -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/libxml2 -I/opt/local/include -I/usr/local/include -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include -I/usr/include -I/usr/include/libxml2 -I/Users/cderose/.rvm/usr/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE    -O3 -ggdb -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wshorten-64-to-32 -Wimplicit-function-declaration  -fno-common -pipe  -g -DXP_UNIX -I/usr/local/Cellar/libxml2/2.8.0/include/libxml2   conftest.c  -L. -L/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/lib -L/usr/local/Cellar/libxml2/2.8.0/lib -L/opt/local/lib -L/usr/local/lib -L/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/lib -L/usr/lib -L/Users/cderose/.rvm/usr/lib -L.  -L/usr/local/Cellar/libxml2/2.8.0/lib     -lxml2   -lruby.1.9.1  -lxml2   -lpthread -ldl -lobjc  "
+conftest.c:7:22: error: too few arguments to function call, expected 2, have 0
+int t() { iconv_open(); return 0; }
+          ~~~~~~~~~~ ^
+/usr/include/iconv.h:65:1: note: 'iconv_open' declared here
+iconv_t iconv_open (const char* /*tocode*/, const char* /*fromcode*/);
+^
+1 error generated.
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <iconv.h>
+4: 
+5: /*top*/
+6: int main() {return 0;}
+7: int t() { iconv_open(); return 0; }
+/* end */
+
+--------------------
+
+have_library: checking for iconv_open() in -liconv... -------------------- yes
+
+"clang -o conftest -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1/x86_64-darwin11.3.0 -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1/ruby/backward -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1 -I. -I/usr/local/Cellar/libxml2/2.8.0/include/libxml2 -I/opt/local/include/libxml2 -I/usr/local/include/libxml2 -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/libxml2 -I/opt/local/include -I/usr/local/include -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include -I/usr/include -I/usr/include/libxml2 -I/Users/cderose/.rvm/usr/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE    -O3 -ggdb -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wshorten-64-to-32 -Wimplicit-function-declaration  -fno-common -pipe  -g -DXP_UNIX -I/usr/local/Cellar/libxml2/2.8.0/include/libxml2   conftest.c  -L. -L/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/lib -L/usr/local/Cellar/libxml2/2.8.0/lib -L/opt/local/lib -L/usr/local/lib -L/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/lib -L/usr/lib -L/Users/cderose/.rvm/usr/lib -L.  -L/usr/local/Cellar/libxml2/2.8.0/lib     -lxml2   -lruby.1.9.1 -liconv  -lxml2   -lpthread -ldl -lobjc  "
+ld: warning: directory not found for option '-L/opt/local/lib'
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <iconv.h>
+4: 
+5: /*top*/
+6: int main() {return 0;}
+7: int t() { void ((*volatile p)()); p = (void ((*)()))iconv_open; return 0; }
+/* end */
+
+--------------------
+
+find_library: checking for xmlParseDoc() in -lxml2... -------------------- yes
+
+"clang -o conftest -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1/x86_64-darwin11.3.0 -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1/ruby/backward -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1 -I. -I/usr/local/Cellar/libxml2/2.8.0/include/libxml2 -I/opt/local/include/libxml2 -I/usr/local/include/libxml2 -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/libxml2 -I/opt/local/include -I/usr/local/include -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include -I/usr/include -I/usr/include/libxml2 -I/Users/cderose/.rvm/usr/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE    -O3 -ggdb -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wshorten-64-to-32 -Wimplicit-function-declaration  -fno-common -pipe  -g -DXP_UNIX -I/usr/local/Cellar/libxml2/2.8.0/include/libxml2   conftest.c  -L. -L/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/lib -L/usr/local/Cellar/libxml2/2.8.0/lib -L/opt/local/lib -L/usr/local/lib -L/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/lib -L/usr/lib -L/Users/cderose/.rvm/usr/lib -L.  -L/usr/local/Cellar/libxml2/2.8.0/lib    -liconv  -lxml2   -lruby.1.9.1 -lxml2 -liconv  -lxml2   -lpthread -ldl -lobjc  "
+conftest.c:5:53: error: use of undeclared identifier 'xmlParseDoc'
+int t() { void ((*volatile p)()); p = (void ((*)()))xmlParseDoc; return 0; }
+                                                    ^
+1 error generated.
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: /*top*/
+4: int main() {return 0;}
+5: int t() { void ((*volatile p)()); p = (void ((*)()))xmlParseDoc; return 0; }
+/* end */
+
+"clang -o conftest -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1/x86_64-darwin11.3.0 -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1/ruby/backward -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1 -I. -I/usr/local/Cellar/libxml2/2.8.0/include/libxml2 -I/opt/local/include/libxml2 -I/usr/local/include/libxml2 -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/libxml2 -I/opt/local/include -I/usr/local/include -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include -I/usr/include -I/usr/include/libxml2 -I/Users/cderose/.rvm/usr/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE    -O3 -ggdb -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wshorten-64-to-32 -Wimplicit-function-declaration  -fno-common -pipe  -g -DXP_UNIX -I/usr/local/Cellar/libxml2/2.8.0/include/libxml2   conftest.c  -L. -L/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/lib -L/usr/local/Cellar/libxml2/2.8.0/lib -L/opt/local/lib -L/usr/local/lib -L/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/lib -L/usr/lib -L/Users/cderose/.rvm/usr/lib -L.  -L/usr/local/Cellar/libxml2/2.8.0/lib    -liconv  -lxml2   -lruby.1.9.1 -lxml2 -liconv  -lxml2   -lpthread -ldl -lobjc  "
+conftest.c:5:11: warning: implicit declaration of function 'xmlParseDoc' is invalid in C99 [-Wimplicit-function-declaration]
+int t() { xmlParseDoc(); return 0; }
+          ^
+1 warning generated.
+ld: warning: directory not found for option '-L/opt/local/lib'
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: /*top*/
+4: int main() {return 0;}
+5: int t() { xmlParseDoc(); return 0; }
+/* end */
+
+--------------------
+
+find_library: checking for xsltParseStylesheetDoc() in -lxslt... -------------------- yes
+
+"clang -o conftest -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1/x86_64-darwin11.3.0 -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1/ruby/backward -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1 -I. -I/usr/local/Cellar/libxml2/2.8.0/include/libxml2 -I/opt/local/include/libxml2 -I/usr/local/include/libxml2 -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/libxml2 -I/opt/local/include -I/usr/local/include -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include -I/usr/include -I/usr/include/libxml2 -I/Users/cderose/.rvm/usr/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE    -O3 -ggdb -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wshorten-64-to-32 -Wimplicit-function-declaration  -fno-common -pipe  -g -DXP_UNIX -I/usr/local/Cellar/libxml2/2.8.0/include/libxml2   conftest.c  -L. -L/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/lib -L/usr/local/Cellar/libxml2/2.8.0/lib -L/opt/local/lib -L/usr/local/lib -L/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/lib -L/usr/lib -L/Users/cderose/.rvm/usr/lib -L.  -L/usr/local/Cellar/libxml2/2.8.0/lib    -lxml2 -liconv  -lxml2   -lruby.1.9.1 -lxslt -lxml2 -liconv  -lxml2   -lpthread -ldl -lobjc  "
+conftest.c:5:53: error: use of undeclared identifier 'xsltParseStylesheetDoc'
+int t() { void ((*volatile p)()); p = (void ((*)()))xsltParseStylesheetDoc; return 0; }
+                                                    ^
+1 error generated.
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: /*top*/
+4: int main() {return 0;}
+5: int t() { void ((*volatile p)()); p = (void ((*)()))xsltParseStylesheetDoc; return 0; }
+/* end */
+
+"clang -o conftest -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1/x86_64-darwin11.3.0 -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1/ruby/backward -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1 -I. -I/usr/local/Cellar/libxml2/2.8.0/include/libxml2 -I/opt/local/include/libxml2 -I/usr/local/include/libxml2 -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/libxml2 -I/opt/local/include -I/usr/local/include -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include -I/usr/include -I/usr/include/libxml2 -I/Users/cderose/.rvm/usr/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE    -O3 -ggdb -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wshorten-64-to-32 -Wimplicit-function-declaration  -fno-common -pipe  -g -DXP_UNIX -I/usr/local/Cellar/libxml2/2.8.0/include/libxml2   conftest.c  -L. -L/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/lib -L/usr/local/Cellar/libxml2/2.8.0/lib -L/opt/local/lib -L/usr/local/lib -L/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/lib -L/usr/lib -L/Users/cderose/.rvm/usr/lib -L.  -L/usr/local/Cellar/libxml2/2.8.0/lib    -lxml2 -liconv  -lxml2   -lruby.1.9.1 -lxslt -lxml2 -liconv  -lxml2   -lpthread -ldl -lobjc  "
+conftest.c:5:11: warning: implicit declaration of function 'xsltParseStylesheetDoc' is invalid in C99 [-Wimplicit-function-declaration]
+int t() { xsltParseStylesheetDoc(); return 0; }
+          ^
+1 warning generated.
+ld: warning: directory not found for option '-L/opt/local/lib'
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: /*top*/
+4: int main() {return 0;}
+5: int t() { xsltParseStylesheetDoc(); return 0; }
+/* end */
+
+--------------------
+
+find_library: checking for exsltFuncRegister() in -lexslt... -------------------- yes
+
+"clang -o conftest -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1/x86_64-darwin11.3.0 -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1/ruby/backward -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1 -I. -I/usr/local/Cellar/libxml2/2.8.0/include/libxml2 -I/opt/local/include/libxml2 -I/usr/local/include/libxml2 -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/libxml2 -I/opt/local/include -I/usr/local/include -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include -I/usr/include -I/usr/include/libxml2 -I/Users/cderose/.rvm/usr/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE    -O3 -ggdb -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wshorten-64-to-32 -Wimplicit-function-declaration  -fno-common -pipe  -g -DXP_UNIX -I/usr/local/Cellar/libxml2/2.8.0/include/libxml2   conftest.c  -L. -L/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/lib -L/usr/local/Cellar/libxml2/2.8.0/lib -L/opt/local/lib -L/usr/local/lib -L/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/lib -L/usr/lib -L/Users/cderose/.rvm/usr/lib -L.  -L/usr/local/Cellar/libxml2/2.8.0/lib    -lxslt -lxml2 -liconv  -lxml2   -lruby.1.9.1 -lexslt -lxslt -lxml2 -liconv  -lxml2   -lpthread -ldl -lobjc  "
+conftest.c:5:53: error: use of undeclared identifier 'exsltFuncRegister'
+int t() { void ((*volatile p)()); p = (void ((*)()))exsltFuncRegister; return 0; }
+                                                    ^
+1 error generated.
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: /*top*/
+4: int main() {return 0;}
+5: int t() { void ((*volatile p)()); p = (void ((*)()))exsltFuncRegister; return 0; }
+/* end */
+
+"clang -o conftest -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1/x86_64-darwin11.3.0 -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1/ruby/backward -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1 -I. -I/usr/local/Cellar/libxml2/2.8.0/include/libxml2 -I/opt/local/include/libxml2 -I/usr/local/include/libxml2 -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/libxml2 -I/opt/local/include -I/usr/local/include -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include -I/usr/include -I/usr/include/libxml2 -I/Users/cderose/.rvm/usr/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE    -O3 -ggdb -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wshorten-64-to-32 -Wimplicit-function-declaration  -fno-common -pipe  -g -DXP_UNIX -I/usr/local/Cellar/libxml2/2.8.0/include/libxml2   conftest.c  -L. -L/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/lib -L/usr/local/Cellar/libxml2/2.8.0/lib -L/opt/local/lib -L/usr/local/lib -L/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/lib -L/usr/lib -L/Users/cderose/.rvm/usr/lib -L.  -L/usr/local/Cellar/libxml2/2.8.0/lib    -lxslt -lxml2 -liconv  -lxml2   -lruby.1.9.1 -lexslt -lxslt -lxml2 -liconv  -lxml2   -lpthread -ldl -lobjc  "
+conftest.c:5:11: warning: implicit declaration of function 'exsltFuncRegister' is invalid in C99 [-Wimplicit-function-declaration]
+int t() { exsltFuncRegister(); return 0; }
+          ^
+1 warning generated.
+ld: warning: directory not found for option '-L/opt/local/lib'
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: /*top*/
+4: int main() {return 0;}
+5: int t() { exsltFuncRegister(); return 0; }
+/* end */
+
+--------------------
+
+have_func: checking for xmlHasFeature()... -------------------- yes
+
+"clang -o conftest -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1/x86_64-darwin11.3.0 -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1/ruby/backward -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1 -I. -I/usr/local/Cellar/libxml2/2.8.0/include/libxml2 -I/opt/local/include/libxml2 -I/usr/local/include/libxml2 -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/libxml2 -I/opt/local/include -I/usr/local/include -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include -I/usr/include -I/usr/include/libxml2 -I/Users/cderose/.rvm/usr/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE    -O3 -ggdb -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wshorten-64-to-32 -Wimplicit-function-declaration  -fno-common -pipe  -g -DXP_UNIX -I/usr/local/Cellar/libxml2/2.8.0/include/libxml2   conftest.c  -L. -L/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/lib -L/usr/local/Cellar/libxml2/2.8.0/lib -L/opt/local/lib -L/usr/local/lib -L/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/lib -L/usr/lib -L/Users/cderose/.rvm/usr/lib -L.  -L/usr/local/Cellar/libxml2/2.8.0/lib    -lexslt -lxslt -lxml2 -liconv  -lxml2   -lruby.1.9.1 -lexslt -lxslt -lxml2 -liconv  -lxml2   -lpthread -ldl -lobjc  "
+conftest.c:5:53: error: use of undeclared identifier 'xmlHasFeature'
+int t() { void ((*volatile p)()); p = (void ((*)()))xmlHasFeature; return 0; }
+                                                    ^
+1 error generated.
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: /*top*/
+4: int main() {return 0;}
+5: int t() { void ((*volatile p)()); p = (void ((*)()))xmlHasFeature; return 0; }
+/* end */
+
+"clang -o conftest -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1/x86_64-darwin11.3.0 -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1/ruby/backward -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1 -I. -I/usr/local/Cellar/libxml2/2.8.0/include/libxml2 -I/opt/local/include/libxml2 -I/usr/local/include/libxml2 -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/libxml2 -I/opt/local/include -I/usr/local/include -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include -I/usr/include -I/usr/include/libxml2 -I/Users/cderose/.rvm/usr/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE    -O3 -ggdb -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wshorten-64-to-32 -Wimplicit-function-declaration  -fno-common -pipe  -g -DXP_UNIX -I/usr/local/Cellar/libxml2/2.8.0/include/libxml2   conftest.c  -L. -L/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/lib -L/usr/local/Cellar/libxml2/2.8.0/lib -L/opt/local/lib -L/usr/local/lib -L/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/lib -L/usr/lib -L/Users/cderose/.rvm/usr/lib -L.  -L/usr/local/Cellar/libxml2/2.8.0/lib    -lexslt -lxslt -lxml2 -liconv  -lxml2   -lruby.1.9.1 -lexslt -lxslt -lxml2 -liconv  -lxml2   -lpthread -ldl -lobjc  "
+conftest.c:5:11: warning: implicit declaration of function 'xmlHasFeature' is invalid in C99 [-Wimplicit-function-declaration]
+int t() { xmlHasFeature(); return 0; }
+          ^
+1 warning generated.
+ld: warning: directory not found for option '-L/opt/local/lib'
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: /*top*/
+4: int main() {return 0;}
+5: int t() { xmlHasFeature(); return 0; }
+/* end */
+
+--------------------
+
+have_func: checking for xmlFirstElementChild()... -------------------- yes
+
+"clang -o conftest -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1/x86_64-darwin11.3.0 -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1/ruby/backward -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1 -I. -I/usr/local/Cellar/libxml2/2.8.0/include/libxml2 -I/opt/local/include/libxml2 -I/usr/local/include/libxml2 -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/libxml2 -I/opt/local/include -I/usr/local/include -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include -I/usr/include -I/usr/include/libxml2 -I/Users/cderose/.rvm/usr/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE    -O3 -ggdb -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wshorten-64-to-32 -Wimplicit-function-declaration  -fno-common -pipe  -g -DXP_UNIX -I/usr/local/Cellar/libxml2/2.8.0/include/libxml2   conftest.c  -L. -L/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/lib -L/usr/local/Cellar/libxml2/2.8.0/lib -L/opt/local/lib -L/usr/local/lib -L/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/lib -L/usr/lib -L/Users/cderose/.rvm/usr/lib -L.  -L/usr/local/Cellar/libxml2/2.8.0/lib    -lexslt -lxslt -lxml2 -liconv  -lxml2   -lruby.1.9.1 -lexslt -lxslt -lxml2 -liconv  -lxml2   -lpthread -ldl -lobjc  "
+conftest.c:5:53: error: use of undeclared identifier 'xmlFirstElementChild'
+int t() { void ((*volatile p)()); p = (void ((*)()))xmlFirstElementChild; return 0; }
+                                                    ^
+1 error generated.
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: /*top*/
+4: int main() {return 0;}
+5: int t() { void ((*volatile p)()); p = (void ((*)()))xmlFirstElementChild; return 0; }
+/* end */
+
+"clang -o conftest -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1/x86_64-darwin11.3.0 -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1/ruby/backward -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1 -I. -I/usr/local/Cellar/libxml2/2.8.0/include/libxml2 -I/opt/local/include/libxml2 -I/usr/local/include/libxml2 -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/libxml2 -I/opt/local/include -I/usr/local/include -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include -I/usr/include -I/usr/include/libxml2 -I/Users/cderose/.rvm/usr/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE    -O3 -ggdb -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wshorten-64-to-32 -Wimplicit-function-declaration  -fno-common -pipe  -g -DXP_UNIX -I/usr/local/Cellar/libxml2/2.8.0/include/libxml2   conftest.c  -L. -L/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/lib -L/usr/local/Cellar/libxml2/2.8.0/lib -L/opt/local/lib -L/usr/local/lib -L/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/lib -L/usr/lib -L/Users/cderose/.rvm/usr/lib -L.  -L/usr/local/Cellar/libxml2/2.8.0/lib    -lexslt -lxslt -lxml2 -liconv  -lxml2   -lruby.1.9.1 -lexslt -lxslt -lxml2 -liconv  -lxml2   -lpthread -ldl -lobjc  "
+conftest.c:5:11: warning: implicit declaration of function 'xmlFirstElementChild' is invalid in C99 [-Wimplicit-function-declaration]
+int t() { xmlFirstElementChild(); return 0; }
+          ^
+1 warning generated.
+ld: warning: directory not found for option '-L/opt/local/lib'
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: /*top*/
+4: int main() {return 0;}
+5: int t() { xmlFirstElementChild(); return 0; }
+/* end */
+
+--------------------
+
+have_func: checking for xmlRelaxNGSetParserStructuredErrors()... -------------------- yes
+
+"clang -o conftest -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1/x86_64-darwin11.3.0 -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1/ruby/backward -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1 -I. -I/usr/local/Cellar/libxml2/2.8.0/include/libxml2 -I/opt/local/include/libxml2 -I/usr/local/include/libxml2 -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/libxml2 -I/opt/local/include -I/usr/local/include -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include -I/usr/include -I/usr/include/libxml2 -I/Users/cderose/.rvm/usr/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE    -O3 -ggdb -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wshorten-64-to-32 -Wimplicit-function-declaration  -fno-common -pipe  -g -DXP_UNIX -I/usr/local/Cellar/libxml2/2.8.0/include/libxml2   conftest.c  -L. -L/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/lib -L/usr/local/Cellar/libxml2/2.8.0/lib -L/opt/local/lib -L/usr/local/lib -L/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/lib -L/usr/lib -L/Users/cderose/.rvm/usr/lib -L.  -L/usr/local/Cellar/libxml2/2.8.0/lib    -lexslt -lxslt -lxml2 -liconv  -lxml2   -lruby.1.9.1 -lexslt -lxslt -lxml2 -liconv  -lxml2   -lpthread -ldl -lobjc  "
+conftest.c:5:53: error: use of undeclared identifier 'xmlRelaxNGSetParserStructuredErrors'
+int t() { void ((*volatile p)()); p = (void ((*)()))xmlRelaxNGSetParserStructuredErrors; return 0; }
+                                                    ^
+1 error generated.
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: /*top*/
+4: int main() {return 0;}
+5: int t() { void ((*volatile p)()); p = (void ((*)()))xmlRelaxNGSetParserStructuredErrors; return 0; }
+/* end */
+
+"clang -o conftest -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1/x86_64-darwin11.3.0 -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1/ruby/backward -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1 -I. -I/usr/local/Cellar/libxml2/2.8.0/include/libxml2 -I/opt/local/include/libxml2 -I/usr/local/include/libxml2 -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/libxml2 -I/opt/local/include -I/usr/local/include -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include -I/usr/include -I/usr/include/libxml2 -I/Users/cderose/.rvm/usr/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE    -O3 -ggdb -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wshorten-64-to-32 -Wimplicit-function-declaration  -fno-common -pipe  -g -DXP_UNIX -I/usr/local/Cellar/libxml2/2.8.0/include/libxml2   conftest.c  -L. -L/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/lib -L/usr/local/Cellar/libxml2/2.8.0/lib -L/opt/local/lib -L/usr/local/lib -L/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/lib -L/usr/lib -L/Users/cderose/.rvm/usr/lib -L.  -L/usr/local/Cellar/libxml2/2.8.0/lib    -lexslt -lxslt -lxml2 -liconv  -lxml2   -lruby.1.9.1 -lexslt -lxslt -lxml2 -liconv  -lxml2   -lpthread -ldl -lobjc  "
+conftest.c:5:11: warning: implicit declaration of function 'xmlRelaxNGSetParserStructuredErrors' is invalid in C99 [-Wimplicit-function-declaration]
+int t() { xmlRelaxNGSetParserStructuredErrors(); return 0; }
+          ^
+1 warning generated.
+ld: warning: directory not found for option '-L/opt/local/lib'
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: /*top*/
+4: int main() {return 0;}
+5: int t() { xmlRelaxNGSetParserStructuredErrors(); return 0; }
+/* end */
+
+--------------------
+
+have_func: checking for xmlRelaxNGSetParserStructuredErrors()... -------------------- yes
+
+"clang -o conftest -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1/x86_64-darwin11.3.0 -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1/ruby/backward -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1 -I. -I/usr/local/Cellar/libxml2/2.8.0/include/libxml2 -I/opt/local/include/libxml2 -I/usr/local/include/libxml2 -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/libxml2 -I/opt/local/include -I/usr/local/include -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include -I/usr/include -I/usr/include/libxml2 -I/Users/cderose/.rvm/usr/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE    -O3 -ggdb -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wshorten-64-to-32 -Wimplicit-function-declaration  -fno-common -pipe  -g -DXP_UNIX -I/usr/local/Cellar/libxml2/2.8.0/include/libxml2   conftest.c  -L. -L/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/lib -L/usr/local/Cellar/libxml2/2.8.0/lib -L/opt/local/lib -L/usr/local/lib -L/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/lib -L/usr/lib -L/Users/cderose/.rvm/usr/lib -L.  -L/usr/local/Cellar/libxml2/2.8.0/lib    -lexslt -lxslt -lxml2 -liconv  -lxml2   -lruby.1.9.1 -lexslt -lxslt -lxml2 -liconv  -lxml2   -lpthread -ldl -lobjc  "
+conftest.c:5:53: error: use of undeclared identifier 'xmlRelaxNGSetParserStructuredErrors'
+int t() { void ((*volatile p)()); p = (void ((*)()))xmlRelaxNGSetParserStructuredErrors; return 0; }
+                                                    ^
+1 error generated.
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: /*top*/
+4: int main() {return 0;}
+5: int t() { void ((*volatile p)()); p = (void ((*)()))xmlRelaxNGSetParserStructuredErrors; return 0; }
+/* end */
+
+"clang -o conftest -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1/x86_64-darwin11.3.0 -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1/ruby/backward -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1 -I. -I/usr/local/Cellar/libxml2/2.8.0/include/libxml2 -I/opt/local/include/libxml2 -I/usr/local/include/libxml2 -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/libxml2 -I/opt/local/include -I/usr/local/include -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include -I/usr/include -I/usr/include/libxml2 -I/Users/cderose/.rvm/usr/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE    -O3 -ggdb -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wshorten-64-to-32 -Wimplicit-function-declaration  -fno-common -pipe  -g -DXP_UNIX -I/usr/local/Cellar/libxml2/2.8.0/include/libxml2   conftest.c  -L. -L/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/lib -L/usr/local/Cellar/libxml2/2.8.0/lib -L/opt/local/lib -L/usr/local/lib -L/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/lib -L/usr/lib -L/Users/cderose/.rvm/usr/lib -L.  -L/usr/local/Cellar/libxml2/2.8.0/lib    -lexslt -lxslt -lxml2 -liconv  -lxml2   -lruby.1.9.1 -lexslt -lxslt -lxml2 -liconv  -lxml2   -lpthread -ldl -lobjc  "
+conftest.c:5:11: warning: implicit declaration of function 'xmlRelaxNGSetParserStructuredErrors' is invalid in C99 [-Wimplicit-function-declaration]
+int t() { xmlRelaxNGSetParserStructuredErrors(); return 0; }
+          ^
+1 warning generated.
+ld: warning: directory not found for option '-L/opt/local/lib'
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: /*top*/
+4: int main() {return 0;}
+5: int t() { xmlRelaxNGSetParserStructuredErrors(); return 0; }
+/* end */
+
+--------------------
+
+have_func: checking for xmlRelaxNGSetValidStructuredErrors()... -------------------- yes
+
+"clang -o conftest -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1/x86_64-darwin11.3.0 -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1/ruby/backward -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1 -I. -I/usr/local/Cellar/libxml2/2.8.0/include/libxml2 -I/opt/local/include/libxml2 -I/usr/local/include/libxml2 -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/libxml2 -I/opt/local/include -I/usr/local/include -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include -I/usr/include -I/usr/include/libxml2 -I/Users/cderose/.rvm/usr/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE    -O3 -ggdb -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wshorten-64-to-32 -Wimplicit-function-declaration  -fno-common -pipe  -g -DXP_UNIX -I/usr/local/Cellar/libxml2/2.8.0/include/libxml2   conftest.c  -L. -L/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/lib -L/usr/local/Cellar/libxml2/2.8.0/lib -L/opt/local/lib -L/usr/local/lib -L/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/lib -L/usr/lib -L/Users/cderose/.rvm/usr/lib -L.  -L/usr/local/Cellar/libxml2/2.8.0/lib    -lexslt -lxslt -lxml2 -liconv  -lxml2   -lruby.1.9.1 -lexslt -lxslt -lxml2 -liconv  -lxml2   -lpthread -ldl -lobjc  "
+conftest.c:5:53: error: use of undeclared identifier 'xmlRelaxNGSetValidStructuredErrors'
+int t() { void ((*volatile p)()); p = (void ((*)()))xmlRelaxNGSetValidStructuredErrors; return 0; }
+                                                    ^
+1 error generated.
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: /*top*/
+4: int main() {return 0;}
+5: int t() { void ((*volatile p)()); p = (void ((*)()))xmlRelaxNGSetValidStructuredErrors; return 0; }
+/* end */
+
+"clang -o conftest -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1/x86_64-darwin11.3.0 -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1/ruby/backward -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1 -I. -I/usr/local/Cellar/libxml2/2.8.0/include/libxml2 -I/opt/local/include/libxml2 -I/usr/local/include/libxml2 -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/libxml2 -I/opt/local/include -I/usr/local/include -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include -I/usr/include -I/usr/include/libxml2 -I/Users/cderose/.rvm/usr/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE    -O3 -ggdb -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wshorten-64-to-32 -Wimplicit-function-declaration  -fno-common -pipe  -g -DXP_UNIX -I/usr/local/Cellar/libxml2/2.8.0/include/libxml2   conftest.c  -L. -L/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/lib -L/usr/local/Cellar/libxml2/2.8.0/lib -L/opt/local/lib -L/usr/local/lib -L/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/lib -L/usr/lib -L/Users/cderose/.rvm/usr/lib -L.  -L/usr/local/Cellar/libxml2/2.8.0/lib    -lexslt -lxslt -lxml2 -liconv  -lxml2   -lruby.1.9.1 -lexslt -lxslt -lxml2 -liconv  -lxml2   -lpthread -ldl -lobjc  "
+conftest.c:5:11: warning: implicit declaration of function 'xmlRelaxNGSetValidStructuredErrors' is invalid in C99 [-Wimplicit-function-declaration]
+int t() { xmlRelaxNGSetValidStructuredErrors(); return 0; }
+          ^
+1 warning generated.
+ld: warning: directory not found for option '-L/opt/local/lib'
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: /*top*/
+4: int main() {return 0;}
+5: int t() { xmlRelaxNGSetValidStructuredErrors(); return 0; }
+/* end */
+
+--------------------
+
+have_func: checking for xmlSchemaSetValidStructuredErrors()... -------------------- yes
+
+"clang -o conftest -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1/x86_64-darwin11.3.0 -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1/ruby/backward -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1 -I. -I/usr/local/Cellar/libxml2/2.8.0/include/libxml2 -I/opt/local/include/libxml2 -I/usr/local/include/libxml2 -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/libxml2 -I/opt/local/include -I/usr/local/include -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include -I/usr/include -I/usr/include/libxml2 -I/Users/cderose/.rvm/usr/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE    -O3 -ggdb -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wshorten-64-to-32 -Wimplicit-function-declaration  -fno-common -pipe  -g -DXP_UNIX -I/usr/local/Cellar/libxml2/2.8.0/include/libxml2   conftest.c  -L. -L/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/lib -L/usr/local/Cellar/libxml2/2.8.0/lib -L/opt/local/lib -L/usr/local/lib -L/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/lib -L/usr/lib -L/Users/cderose/.rvm/usr/lib -L.  -L/usr/local/Cellar/libxml2/2.8.0/lib    -lexslt -lxslt -lxml2 -liconv  -lxml2   -lruby.1.9.1 -lexslt -lxslt -lxml2 -liconv  -lxml2   -lpthread -ldl -lobjc  "
+conftest.c:5:53: error: use of undeclared identifier 'xmlSchemaSetValidStructuredErrors'
+int t() { void ((*volatile p)()); p = (void ((*)()))xmlSchemaSetValidStructuredErrors; return 0; }
+                                                    ^
+1 error generated.
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: /*top*/
+4: int main() {return 0;}
+5: int t() { void ((*volatile p)()); p = (void ((*)()))xmlSchemaSetValidStructuredErrors; return 0; }
+/* end */
+
+"clang -o conftest -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1/x86_64-darwin11.3.0 -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1/ruby/backward -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1 -I. -I/usr/local/Cellar/libxml2/2.8.0/include/libxml2 -I/opt/local/include/libxml2 -I/usr/local/include/libxml2 -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/libxml2 -I/opt/local/include -I/usr/local/include -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include -I/usr/include -I/usr/include/libxml2 -I/Users/cderose/.rvm/usr/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE    -O3 -ggdb -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wshorten-64-to-32 -Wimplicit-function-declaration  -fno-common -pipe  -g -DXP_UNIX -I/usr/local/Cellar/libxml2/2.8.0/include/libxml2   conftest.c  -L. -L/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/lib -L/usr/local/Cellar/libxml2/2.8.0/lib -L/opt/local/lib -L/usr/local/lib -L/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/lib -L/usr/lib -L/Users/cderose/.rvm/usr/lib -L.  -L/usr/local/Cellar/libxml2/2.8.0/lib    -lexslt -lxslt -lxml2 -liconv  -lxml2   -lruby.1.9.1 -lexslt -lxslt -lxml2 -liconv  -lxml2   -lpthread -ldl -lobjc  "
+conftest.c:5:11: warning: implicit declaration of function 'xmlSchemaSetValidStructuredErrors' is invalid in C99 [-Wimplicit-function-declaration]
+int t() { xmlSchemaSetValidStructuredErrors(); return 0; }
+          ^
+1 warning generated.
+ld: warning: directory not found for option '-L/opt/local/lib'
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: /*top*/
+4: int main() {return 0;}
+5: int t() { xmlSchemaSetValidStructuredErrors(); return 0; }
+/* end */
+
+--------------------
+
+have_func: checking for xmlSchemaSetParserStructuredErrors()... -------------------- yes
+
+"clang -o conftest -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1/x86_64-darwin11.3.0 -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1/ruby/backward -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1 -I. -I/usr/local/Cellar/libxml2/2.8.0/include/libxml2 -I/opt/local/include/libxml2 -I/usr/local/include/libxml2 -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/libxml2 -I/opt/local/include -I/usr/local/include -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include -I/usr/include -I/usr/include/libxml2 -I/Users/cderose/.rvm/usr/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE    -O3 -ggdb -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wshorten-64-to-32 -Wimplicit-function-declaration  -fno-common -pipe  -g -DXP_UNIX -I/usr/local/Cellar/libxml2/2.8.0/include/libxml2   conftest.c  -L. -L/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/lib -L/usr/local/Cellar/libxml2/2.8.0/lib -L/opt/local/lib -L/usr/local/lib -L/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/lib -L/usr/lib -L/Users/cderose/.rvm/usr/lib -L.  -L/usr/local/Cellar/libxml2/2.8.0/lib    -lexslt -lxslt -lxml2 -liconv  -lxml2   -lruby.1.9.1 -lexslt -lxslt -lxml2 -liconv  -lxml2   -lpthread -ldl -lobjc  "
+conftest.c:5:53: error: use of undeclared identifier 'xmlSchemaSetParserStructuredErrors'
+int t() { void ((*volatile p)()); p = (void ((*)()))xmlSchemaSetParserStructuredErrors; return 0; }
+                                                    ^
+1 error generated.
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: /*top*/
+4: int main() {return 0;}
+5: int t() { void ((*volatile p)()); p = (void ((*)()))xmlSchemaSetParserStructuredErrors; return 0; }
+/* end */
+
+"clang -o conftest -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1/x86_64-darwin11.3.0 -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1/ruby/backward -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/ruby-1.9.1 -I. -I/usr/local/Cellar/libxml2/2.8.0/include/libxml2 -I/opt/local/include/libxml2 -I/usr/local/include/libxml2 -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include/libxml2 -I/opt/local/include -I/usr/local/include -I/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/include -I/usr/include -I/usr/include/libxml2 -I/Users/cderose/.rvm/usr/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE    -O3 -ggdb -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wshorten-64-to-32 -Wimplicit-function-declaration  -fno-common -pipe  -g -DXP_UNIX -I/usr/local/Cellar/libxml2/2.8.0/include/libxml2   conftest.c  -L. -L/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/lib -L/usr/local/Cellar/libxml2/2.8.0/lib -L/opt/local/lib -L/usr/local/lib -L/Users/cderose/.rvm/rubies/ruby-1.9.3-p125/lib -L/usr/lib -L/Users/cderose/.rvm/usr/lib -L.  -L/usr/local/Cellar/libxml2/2.8.0/lib    -lexslt -lxslt -lxml2 -liconv  -lxml2   -lruby.1.9.1 -lexslt -lxslt -lxml2 -liconv  -lxml2   -lpthread -ldl -lobjc  "
+conftest.c:5:11: warning: implicit declaration of function 'xmlSchemaSetParserStructuredErrors' is invalid in C99 [-Wimplicit-function-declaration]
+int t() { xmlSchemaSetParserStructuredErrors(); return 0; }
+          ^
+1 warning generated.
+ld: warning: directory not found for option '-L/opt/local/lib'
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: /*top*/
+4: int main() {return 0;}
+5: int t() { xmlSchemaSetParserStructuredErrors(); return 0; }
+/* end */
+
+--------------------
+

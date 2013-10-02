@@ -1,0 +1,5 @@
+--markup markdown
+
+-
+docs/**/*.md
+

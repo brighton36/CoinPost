@@ -1,0 +1,25 @@
+// Place all the styles related to the categories controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+$darkGrey: #333;
+
+#category_listing_table {
+  td{
+    padding-left:10px;
+  }
+  .item_listing_header {
+    margin-bottom:5px;
+    a {
+      color: $darkGrey;
+      font-size: 18px;
+    }
+  }
+  .container{
+    .row-fluid{
+      margin-bottom: 0!important;
+    }
+    a.thumbnail{
+      margin: 5px;
+    }
+  }
+}

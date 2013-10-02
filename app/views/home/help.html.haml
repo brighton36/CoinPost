@@ -1,0 +1,71 @@
+%hr.long-hr
+:markdown
+  We're currently compiling a list of frequent questions so that we can add some
+  immediate gratification for our visitors, to this page. Since we don't have 
+  quite enough questions yet, we invite you to use the form below to ask us for 
+  assistance. We're happy to answer questions about the site, bitcoins in general
+  or even give you some pointers on transcendental meditation techniques. 
+
+  If you'd rather reach us by e-mail, try us at [info@coinpost.com](mailto:info@coinpost.com).
+
+%hr
+#ask_admin_question
+  %h3 Ask us a question
+  -if @coinpost_admin
+    =tinymce_minimal
+    %p 
+      Answers will arrive in your CoinPost inbox, and the email address we have on
+      your account. 
+
+    =semantic_form_for Message.new, :url => user_messages_url(@coinpost_admin),
+      :remote => true, :html => {:id => 'admin_message', :class => 'message_create'} do  |f|
+      =f.input :subject, :required => true, :label => 'Question',
+        :input_html => {:class => 'input-xxlarge'}
+      =f.input :body, :required => true,
+        :input_html => {:class => 'tinymce input-xxlarge'}
+      =f.buttons do
+        =f.commit_button :send, :label => "Send Question",
+          :button_html => {:class => 'btn-primary btn-large'}
+        =image_tag '/images/loading.gif', :size => '32x32', 
+          :alt => 'Loading', :class => %w(loading_indicator hidden)
+  -else
+    =form_tag ask_question_path, 
+      {:remote => true, :id => 'admin_message', :class=> 'message_create'} do
+      .string.clearfix.required.control-group.stringish#message_from_email_input
+        %label(for="message_from_email")
+          From (E-mail):
+          %abbr(title='required') *
+        .input
+          =text_field_tag 'message[from_email]', nil, 
+            :id => 'message_from_email', :class => 'input-xxlarge', :maxlength => 255
+      .string.clearfix.required.control-group.stringish#message_subject_input
+        %label(for="message_subject")
+          Question
+          %abbr(title='required') *
+        .input
+          =text_field_tag 'message[subject]', nil, 
+            :id => 'message_subject', :class => 'input-xxlarge', :maxlength => 255
+      .text.clearfix.required.control-group.stringish#message_body_input
+        %label(for="message_body")
+          Message
+          %abbr(title='required') *
+        .input
+          = text_area_tag 'message[body]', nil, :rows => 20,  
+            :id => 'message_body', :class => %w(input-xxlarge short_textfield)
+      .actions
+        = submit_tag 'Send Question', :class => %w(btn-primary btn-large btn commit create), 
+          :name => 'commit'
+        = image_tag '/images/loading.gif', :size => '32x32', 
+          :alt => 'Loading', :class => %w(loading_indicator hidden)
+
+#message_sent_successfully.hidden
+  .row 
+    .span1
+      =image_tag '/images/green-checkmark.png', :alt => 'Green Checkmark',
+        :size => '64x64'
+    .span6
+      %h3 Your Question was sent Successfully
+      %p 
+        We should be able to answer most questions within twenty-four hours. You'll
+        receive a reply in your inbox when we send our response.
+      =link_to 'Ask another question', '#', :id => 'repeat_question'

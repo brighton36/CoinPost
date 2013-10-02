@@ -1,0 +1,47 @@
+#items_block
+  -if @item.is_purchaseable 
+    %h3.title Interested? 
+    %p.call-to-action Let's do something about that...
+  -else
+    %h3.title Sold Out
+    %p.call-to-action Unfortunately this item is no longer available. 
+  %hr.short-hr
+
+  %h2.price
+    Price:
+    %br
+    =raw '%s' % btc_money(@item.price)
+  %h3.available='%d available' % @item.quantity_available
+
+  #item_action_call
+    -if @item.is_purchaseable 
+      =render 'shared/buy_this_item_button', :user => @user, :item => @item
+      %p
+        This item is expiring in
+        =time_ago_in_words @item.expires_at
+    -else
+      %a.btn.btn-danger.btn-large.disabled(href='#')
+        %i.icon-warning-sign.icon-white
+        Unavailable
+      %p Try looking through the listings for similar items.
+  - if @purchase
+    =render 'shared/item_purchase_modal', :purchase => @purchase, :item => @item
+  - if @message
+    =render 'shared/message_modal', 
+      :modal_id => 'ask_seller_a_question',
+      :title    => 'Have a question about this item?',
+      :url      => ask_question_item_url(@item),
+      :message  => @message, 
+      :msg_form => 'item_question', :msg_form_params => {:item => @item},
+      :commit_label => 'Ask Question'
+  %ul.nav.nav-pills.nav-stacked
+    -if @message
+      %li
+        =link_to 'Ask the seller a question', '#ask_seller_a_question',
+          'data-toggle' => 'modal'
+      -# %li=link_to 'Add to watch list' 
+      -# %li=link_to 'Find Similar items' 
+    -else 
+      %li=link_to 'Ask the seller a question', '#', :class => 'toggle_auth_required'
+      -# %li=link_to 'Add to watch list' 
+      -# %li=link_to 'Find Similar items' 

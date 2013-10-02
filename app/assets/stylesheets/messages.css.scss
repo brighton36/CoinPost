@@ -1,0 +1,46 @@
+// Place all the styles related to the messages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.message_listing_table {
+  margin-top: 10px;
+
+  th.select_column { width: 20px }
+  th.from_column { width: 120px }
+  th.to_column { width: 120px }
+  th.sent_at_column { width: 150px }
+  th.actions_column { width: 90px }
+
+  tr.unread { 
+    td.from_column { font-weight: bold; }
+    td.subject_column { font-weight: bold; }
+  }
+
+  td.actions_column { text-align: center }
+  td.no_messages{
+    text-align: center;
+    margin: 4px 0 4px 0;
+  }
+
+}
+
+#sentbox_messages_table th.actions_column { width: 45px }
+
+.back_link{ 
+  display:block;
+  margin-bottom: 20px; 
+}
+.message_show_table {
+  tr.message_body td.first_col strong{ display:block; height: 300px; }
+}
+
+/* DASHBOARD - Inbox */
+#inbox-message-container{
+  .span3{
+    margin-left:0;
+  }
+}
+#trash-message-container{
+  .span3{
+    margin-left:0;
+  }
+}

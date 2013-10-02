@@ -1,0 +1,51 @@
+.navbar
+  .navbar-inner
+    .container
+      =link_to image_tag('/images/logo.png', :size => '323x78', :alt => "CoinPost Logo"), root_path, :class => "brand"
+      .nav-collapse
+        %div#nav-wrapper.clearfix
+          %ul#main-nav.nav
+            -header_navigation.each_with_index do |nav, i|
+              %li{:class => ( nav.is_active? ? 'active' : '') }
+                =link_to nav.i18_label, nav.url, :class => nav.classes
+          %ul#user-options.nav.pull-right
+            -if user_signed_in?
+              %li{:class => ['dropdown',
+                (@active_header_label == :dashboard) ? 'active' : nil].compact.join(' ')}
+                %a(href="#" class="dropdown-toggle" data-toggle="dropdown")
+                  Your Coinpost
+                  %b.caret
+                %ul.dropdown-menu
+                  %li=link_to t('layout.header.view_dashboard'), 
+                    dashboard_index_path
+                  %li.divider
+                  %li=link_to 'View Your Inbox',  messages_inbox_users_path(current_user)
+                  %li=link_to 'Leave Feedback', needs_feedback_users_url(current_user) 
+                  %li=link_to 'Manage Purchases', purchases_unpaid_users_path(current_user) 
+                  %li=link_to 'Manage Sales', sales_unfulfilled_users_path(current_user) 
+                  %li=link_to 'Manage Postings',active_items_dashboard_index_path
+                  %li.divider
+                  %li=link_to t('layout.header.sign_out'), 
+                      destroy_user_session_path, :method=>'delete'
+            -else
+              %li=link_to t('layout.header.sign_in'), '#login_modal', 'data-toggle' => 'modal'
+        
+        %ul#conversion-info
+          -if user_signed_in?
+            %li.welcome-user
+              =link_to t('layout.header.welcome_user', :username => current_user.name), 
+               dashboard_index_path
+          %li.conversion
+            =link_to btc_to_currency_header, '#', :rel => 'tooltip', 
+              'data-placement' => 'left', :class => 'exchange_rate',
+              'data-original-title' => t('.exchange_rate_notice')
+            =select_tag 'user[preffered_currency]', 
+              options_for_select(supported_currencies_options_map, user_currency),
+              :class => 'selectpicker'
+- if (action_name == 'index' && controller_name == 'home')               
+  .hero-unit
+    %div.contents
+      %h2 Your Bitcoin Marketplace 
+      %p Take part in the Bitcoin revolution! Start listing your products and services for sale, in exchange for bitcoins.
+      %p
+        =link_to 'Learn More', about_us_path, :class => %w(btn btn-primary btn-large)

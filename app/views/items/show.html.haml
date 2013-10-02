@@ -1,0 +1,7 @@
+=render 'show_item'
+- if @item.is_purchaseable
+  #buy-btn-container
+    =render 'shared/buy_this_item_button', :user => @user, :item => @item
+    %p
+      This item is expiring in
+      =time_ago_in_words @item.expires_at

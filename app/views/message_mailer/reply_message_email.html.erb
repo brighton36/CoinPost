@@ -1,0 +1,9 @@
+<p>You have received reply to your message on CoinPost:</p>
+<p><strong>From:</strong> <%= @message.sender.name %></p>
+<p><strong>Subject:</strong> <%= @message.subject.html_safe? ? @message.subject : strip_tags(@message.subject) %></p>
+<p><strong>Message:</strong></p>
+<blockquote>
+  <p>
+    <%= raw @message.body %>
+  </p>
+</blockquote>

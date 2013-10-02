@@ -1,0 +1,50 @@
+.modal.hide.fade{'data-keyboard' => 'false', 'data-backdrop' => 'static', :id => 'item_purchase_modal'}
+  =semantic_form_for purchase, :url => purchase_item_url(item), :remote => true,
+    :html => {:class => 'purchase_create'} do |f|
+    .modal-header
+      %button.close{'data-dismiss' => 'modal' } ×
+      %h3 Let's buy this item
+    .modal-body
+      .modal-body_form
+        .row-fluid 
+          .span2
+            =image_tag '/images/warning.png', :alt => 'Question?',
+              :size => '64x64'
+          .span10
+            %h3= 'Do you want to buy "%s"?' % item.title
+            %ul 
+              %li There is no cancelling this action
+              %li Your reputation will be affected by this decision 
+            =f.input :quantity_purchased, :required => true, :default => 1,
+              :label => "How many do you wish to purchase? (%s Available) " % [item.quantity_available],
+              :input_html => {:class => 'input-mini'}
+            %p
+              %strong Once you click the buy button, you are committing to this purchase.
+      .modal-body_success.hide
+        .row-fluid 
+          .span2
+            =image_tag '/images/green-checkmark.png', :alt => 'Green Checkmark',
+              :size => '64x64'
+          .span10
+            %h3 Thank-you for your purchase!
+            %p The seller has been notified of your commitment to buy. 
+            %ul 
+              %li Now it's time to send your coins. 
+              %li Once payment is received, the seller will process your order.
+            
+            %h3 
+              Please send 
+              %span.purchase_total=btc_money( Money.new(0, Money.default_currency) )
+              to: 
+            %h4.btc_receive_address=item.btc_receive_address
+            %p A copy of this message will be e-mailed to you. You can view the status of this transaction in your dashboard.
+    .modal-footer
+      =f.buttons do
+        =image_tag '/images/loading.gif', :size => '32x32', 
+          :alt => 'Loading', :class => 'loading_indicator'
+        =link_to 'Cancel','#', :class => 'btn btn-large cancel',
+          'data-dismiss' => 'modal'
+        =f.commit_button :send_message, :label => t('formtastic.actions.buy'),
+          :button_html => {:class => 'btn-success btn-large'}
+      .close_actions.hide
+        =link_to 'Ok, Great!',item_path(item), :class => 'btn'

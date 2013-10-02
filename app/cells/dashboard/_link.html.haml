@@ -1,0 +1,10 @@
+-is_active = active.match [@controller_name, @action_name].join('#') 
+-has_icon = local_assigns.has_key? :icon
+%li{:class => (is_active) ? 'active' : nil }
+  %a{:href => url, :class => (has_icon) ? nil : 'no_link_icon'}
+    -if has_icon
+      %i{:class => [icon, (is_active ? 'icon-white' : nil) ].compact.join(' ')}
+    =title
+    -if local_assigns.has_key?(:badged) && badged > 0
+      %span{:class => ['badge',(is_active) ? nil : 'badge-info'].compact.join(' ')}
+        =badged

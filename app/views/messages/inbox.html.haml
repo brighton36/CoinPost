@@ -1,0 +1,9 @@
+%hr.long-hr
+#inbox-message-container
+  = form_tag trash_messages_users_path(current_user) do
+    =render 'message_listing_table', 
+      :messages => @messages, 
+      :message_count => @message_count,
+      :table_actions => [:trash],
+      :columns => [:from, :subject, :sent_at], 
+      :folder_name => t('.folder_name')

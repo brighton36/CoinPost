@@ -1,0 +1,54 @@
+.row.item_detail
+  %h1=@item.title
+  #item-details-and-thumbnails.clearfix
+    - if @item.images.length > 0
+      .item_images
+        %ul.thumbnails( data-toggle="modal-gallery" data-target="#modal-gallery" )
+          - @item.images.each_with_index do |image, i|
+            %li.thumbnail{ :class => (i == 0) ? 'item_detail_large' : 'item_detail_small' }
+              %a{ :href => image.image.url, 
+                :rel => 'gallery', 
+                :download => image.image.url,
+                :title => image.read_attribute(:image) }
+                -if (i==0)
+                  =cw_image image.image.item_detail_large,
+                    :alt => image.read_attribute(:image) 
+                -else (i==0)
+                  =cw_image image.image.item_detail_small, 
+                    :alt => image.read_attribute(:image) 
+    .item_details
+      %strong Location:
+      %p=@item.location
+      %strong Seller:
+      %p
+        =link_to @item.creator.name, @item.creator
+        %br
+        %span{:class => [(@item.creator.feedback[:positive] > 0) ? 'positive_rating' : nil]}
+          =t '.seller_feedback_positive', @item.creator.feedback
+        %br
+        %span{:class => [(@item.creator.feedback[:negative] > 0) ? 'negative_rating' : nil]}
+          =t '.seller_feedback_negative', @item.creator.feedback
+      %strong Price:
+      %p
+        =btc_money @item.price
+        %br
+        =money_in_user_currency @item.price
+      %strong Available:
+      %p=@item.quantity_available
+      %strong Categories:
+      %p=@item.categories.collect(&:title).join ', '
+      %strong Listed:
+      %time{ :datetime => @item.lists_at.utc}=l @item.lists_at
+      %strong Expires:
+      %time{ :datetime => @item.expires_at.utc }=l @item.expires_at
+  %h3 Item Description
+  #description
+    =raw @item.description
+
+    %p
+      %strong Shipping Policy:
+      =(@item.shipping_policy) ? @item.shipping_policy.label : '(None)'
+    %p
+      %strong Return Policy:
+      =(@item.return_policy) ? @item.return_policy.label : '(None)'
+=render 'modal_gallery'

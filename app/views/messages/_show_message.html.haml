@@ -1,0 +1,35 @@
+%table{ :class => [ 'table', 'table-bordered', 'table-condensed', 
+  'message_%s_table' % table_class ].join(' ') }
+  %thead
+    %tr
+      %td.first_col
+        %strong From:
+      %td
+        -if message.sender == current_user
+          = message.sender.name
+        -else 
+          =link_to message.sender.name, message.sender
+    %tr
+      %td.first_col
+        %strong To:
+      %td
+        - to_user = message.recipients.find{|u| u != message.sender }
+        -if to_user == current_user
+          = to_user.try(:name)
+        -else 
+          =link_to to_user.try(:name), to_user
+    %tr
+      %td.first_col
+        %strong Sent:
+      %td
+        = '%s (%s ago)' % [message.created_at.to_s(:long),
+          time_ago_in_words(message.created_at)]
+    %tr
+      %td.first_col
+        %strong Location:
+      %td=link_to_message_folder message
+    %tr.message_body
+      %td.first_col 
+        %strong Message:
+      %td
+        =raw message.body

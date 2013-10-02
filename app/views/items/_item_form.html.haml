@@ -1,0 +1,82 @@
+=tinymce
+=form_tag submit_url, {:class => 'formtastic item', :novalidate => true,
+  :id => '%s_item' % [(@item.new_record?) ? 'new' : 'edit'],
+  :method => (@item.new_record?) ? 'post' : 'put'} do |f|
+  =bootstrap_fieldgroup :basics_group do
+    =bootstrap_text_field :item, :title, :required => true, :class => 'input-xxlarge'
+    =bootstrap_text_field :item, :location, :required => true, :class => 'input-xxlarge'
+    =bootstrap_number_field :item, :quantity_listed, :required => true, :class => 'span1'
+
+  =bootstrap_fieldgroup :pricing_group do
+    =bootstrap_text_field :item, :btc_receive_address, :required => true, :class => 'input-xlarge'
+
+    .clearfix.control-group#item_price_input{:class => (@item.errors.include? :price) ? 'error' : nil}
+      -# item_currency reflects the item's currently set currency
+      -item_currency = @item.price.currency_as_string || 'BTC'
+      -# other_currency reflects what we're putting in the 'Other' radio group:
+      -other_currency = (item_currency != 'BTC') ? item_currency : user_currency 
+
+      %label How would you like to set the item price?*
+      .input
+        .form-inline
+          .radio_button_container
+            = radio_button_tag 'item[price_in_currency][currency]', 'BTC', (item_currency == 'BTC'),
+              :id => 'price_currency_BTC'
+          %label(for='price_currency_BTC' class='checkbox') In BTC. Unadjusted for exchange rates:
+          .input-prepend.input-append
+            =append_input(image_tag('btc-symbol-gray-16.gif', :size => '11x16'),'BTC') do
+              = text_field_tag 'item[price_in_btc]', 
+                (item_currency == 'BTC') ? @item.price.to_s : Money.new(0,'BTC') , 
+                :class => 'input-medium'
+        %p.pricing_note 
+          By specifying a price in BTC, CoinPost will not adjust this amount for you
+          after you set the value.
+
+      .input
+        .form-inline
+          .radio_button_container
+            = radio_button_tag 'item[price_in_currency][currency]', other_currency, 
+              (item_currency != 'BTC'),
+              :id => 'price_currency_other'
+          %label{:for => 'price_currency_other', :class => 'checkbox'} 
+            ='In %s. Adjusted for exchange rates:' % other_currency.upcase
+          .input-prepend.input-append
+            =append_input(currency_symbol(other_currency), other_currency) do
+              = text_field_tag 'item[price_in_currency][price]', 
+                (item_currency == other_currency) ? @item.price.to_s : Money.new(0,other_currency) , 
+                :class => 'input-medium'
+        %p.pricing_note 
+          ='By specifying a price in %s, CoinPost will continuously update your BTC price to reflect the current %s to BTC Exchange rate.' % ([other_currency]*2)
+        %p.pricing_note 
+          When your item sells, the buyer's amount due will be locked into the BTC 
+          rate at the time of sale.
+      - if (@item.errors.include? :price) ? 'error' : nil
+        %span.help-inline
+          =@item.errors[:price].join ' and '
+  - if @item.new_record?
+    =bootstrap_fieldgroup :time_options_group do
+      =bootstrap_datetime_field :item, :lists_at, :required => true
+      =bootstrap_datetime_field :item, :expires_at, :required => true
+      #user_time_zone_input.select.clearfix.required
+        %label(for='user_time_zone')
+          =t('.user_time_zone_label')
+          %abbr(title='required')*
+        .input=user_tz_select
+
+  =bootstrap_fieldgroup :description_group do
+    =bootstrap_select_field :item, :categories, Category.tree_as_options,
+      {:required => true}, {:class => 'input-large', :multiple => true}
+    =bootstrap_text_area_field :item, :description, :required => true, 
+      :class => 'tinymce input-xxlarge'
+    =bootstrap_select_field :item, :return_policy, 
+      ReturnPolicy.all.collect{|r| [r.label, r.id] }, 
+      :include_blank => t('.blank_return_policy')
+    =bootstrap_select_field :item, :shipping_policy, 
+      ShippingPolicy.all.collect{|r| [r.label, r.id] }, 
+      :include_blank => t('.blank_shipping_policy')
+    
+  .actions
+    =submit_tag t('formtastic.actions.%s' % commit_label), 
+      :class => "btn-primary btn-large btn commit create"
+    - if show_cancel
+      =link_to('Cancel',:back, :class => 'btn btn-large')

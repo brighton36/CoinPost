@@ -1,0 +1,24 @@
+%hr.long-hr
+
+-if @purchases[:by_others].empty? && @purchases[:by_user].empty?
+  %p 
+    Seems like there's nothing for you to leave feedback on right now. How about
+    =link_to 'buying something', categories_path
+    ?
+-else
+  %p=t '.teaser'
+
+  -if @purchases[:by_user].length > 0
+    %h2 Items You've Bought
+    .seller_feedback
+      -@purchases[:by_user].each do |purchase|
+        =render 'leave_feedback_on_purchase', :purchase => purchase,
+          :relationship => :bought_from
+
+  -if @purchases[:by_others].length > 0
+    %h2 Items You've Sold
+    .buyer_feedback
+      -@purchases[:by_others].each do |purchase|
+        =render 'leave_feedback_on_purchase', :purchase => purchase,
+          :relationship => :sold_to
+

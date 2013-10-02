@@ -1,0 +1,9 @@
+%hr.long-hr
+%p=link_to_message_folder @message, '.back_to_folder'
+
+=render 'show_message', :message => @message, :table_class => 'show'
+
+-if permitted_to? :reply, @message
+  .pull-right
+    =link_to t('.reply'), reply_user_message_url(current_user, @message), 
+      :class => 'btn btn-large btn-primary'

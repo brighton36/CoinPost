@@ -1,0 +1,51 @@
+%hr.long-hr
+-if @unread_messages.length == 0 && @item_tables.merge(@purchase_tables).all?{|k,v| v.empty?}
+  %p Seems like you've not got much going on at the moment. 
+    
+  %p This dashboard is a shortcut for :
+  %ul
+    %li viewing unread emails
+    %li managing transactions requiring feedback
+    %li managing items requiring payment 
+    %li and managing items requiring fulfillment. 
+  %p 
+    However, it seems like you've not got much going on right now. How about taking a look 
+    =link_to 'through the listings?', categories_path
+  %p 
+    Or, if you're thinking about becoming a seller, why not
+    =link_to 'get started now?', new_item_path
+-else
+  %p= "Welcome, %s here's what's going on..." % current_user.name
+
+  -if @unread_messages.length > 0
+    %h3 Unread Messages
+    %p= 'Displaying 5 of %s unread messages.' % @unread_messages.count
+    =render 'messages/message_listing_table', 
+      :messages => @unread_messages[0...5], 
+      :message_count => @unread_messages.count,
+      :columns => [:from, :subject, :sent_at], 
+      :folder_name => t('.folder_name'),
+      :click_for_more_url => messages_inbox_users_path(current_user)
+
+  -[:unpaid, :unfulfilled].each do |table|
+    - @purchases = @purchase_tables[table]
+    - click_for_more_url = (table == :unpaid) ? purchases_unpaid_users_path(current_user) : sales_unfulfilled_users_path(current_user)
+    -if @purchases.length > 0
+      %h3=t('.%s_purchases' % table )
+      %p=t '.purchase_listing', :total => @purchases.count,
+        :current => (@purchases.length > 5) ? 5 : @purchases.count
+      =render 'purchases/purchase_listing_table', 
+        :purchases => @purchases.limit(5), 
+        :columns => [:item, :purchaser, :quantity_purchased, :total_price],
+        :click_for_more_url => click_for_more_url
+
+  -[:active, :pending ].each do |table|
+    - @items = @item_tables[table]
+    - click_for_more_route = ('%s_items_dashboard_index_path' % table).to_sym
+    -if @items.length > 0
+      %h3=t('.%s_items_table' % table )
+      %p=t '.item_listing', :total => @items.count,
+        :current => (@items.length > 5) ? 5 : @items.count
+      =render 'item_table', :items => @items.limit(5), 
+        :table_id => '%s_items_table' % table,
+        :click_for_more_url => self.send(click_for_more_route)

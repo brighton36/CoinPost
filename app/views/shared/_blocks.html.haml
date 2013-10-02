@@ -1,0 +1,7 @@
+- if blocks
+  .span3
+    -blocks.each do |block|
+      -if block.shift == :cell
+        =render_cell *block
+      -else
+        =render *block

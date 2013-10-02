@@ -1,0 +1,41 @@
+// Place all the styles related to the Purchases controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#mark_fulfilled_modal {
+  #item_description_row{ margin-bottom: 12px; font-size: 1.3em }
+  #purchase_fulfillment_notes { width: 520px; }
+}
+
+
+.leave_feedback{
+  .radio {
+    padding: 0;
+    margin-bottom: 0;
+
+    label { display: block; float: left; }
+    .choices{ 
+      display:block; 
+      float: left;
+
+      ul { 
+        display:block;
+        float: left;
+        margin-bottom: 0;
+        li { 
+          list-style: none; 
+          display:block; 
+          float: left;
+          span{ display: block; float: left; margin-right:30px; }
+          input{ display: block; float: left; }
+        }
+      }
+      span{ display: block; float: left;}
+    }
+  } 
+
+  .text { margin-bottom: 0; }
+
+  textarea { width: 500px; }
+
+}

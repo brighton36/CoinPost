@@ -1,0 +1,9 @@
+- flash_class_map = {:error => 'alert-error',
+    :alert => 'alert-info', :notice => 'alert-success'}
+- flash_header_map = {:error => 'Error',
+    :alert => 'Notice', :notice => 'Sucess'}
+- flash.each do |name, msg|
+  %div{ :class => [ 'alert', flash_class_map[name] ].join(' ') }
+    %a.close(data-dismiss='alert') x
+    %h4.alert-heading=flash_header_map[name]
+    =raw RDiscount.new(msg).to_html if msg.is_a?(String)
