@@ -1,6 +1,7 @@
-== CoinPost
+== CoinPost - Start Your own Bitcoin Marketplace
 == A Ruby-On-Rails-based Bitcoin Item listing and marketplace system
 
+![ScreenShot](https://raw.github.com/brighton36/CoinPost/tree/master/public/images/coinpost-home-page.png)
 To see an easy example of what this software is about - take a look at www.coinpost.com. 
 *Please note* this site is a live and functioning marketplace, so don't post any items or
 buy any items unless you intend to commit to your activity.
@@ -10,6 +11,7 @@ buy any items unless you intend to commit to your activity.
 * Item Price fixing to major currencies
 * Extensive test to code ratio (~1:1)
 * Secure messaging framework for communicating with site users
+* Automatic time zone synchronization between browser and server-side using javascript
 * Extensive support for image assets on products
 * WYSIWYG editing for product descriptions
 * Item Categories
@@ -39,7 +41,7 @@ buy any items unless you intend to commit to your activity.
 == A Note on Security
 
 * Extensive spec and behavioral tests on nearly all app functions and code paths
-* input Html is whitelist sanitized through the nokogiri-based sanitize gem
+* nput html is whitelist sanitized through the nokogiri-based sanitize gem
 * All ActiveRecord objects use attribute whitelisting
 * Extensive ACL definitions through declarative_authorization, with corresponding bdd tests
 
