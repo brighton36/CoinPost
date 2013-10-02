@@ -1,10 +1,12 @@
 CoinPost - Start Your own Bitcoin Marketplace
 ====================
 
-A Ruby-On-Rails-based Bitcoin Item listing and marketplace system
----------------------
+Coinpost is a complete ready-to-deploy framework for bitcoin-based item listings. 
+Coinpost is well-tested application written in Ruby on Rails, with an encompassing 
+featureset.
 
 ![ScreenShot](https://raw.github.com/brighton36/CoinPost/master/public/images/coinpost-home-page.png)
+
 To see an easy example of what this software is about - take a look at www.coinpost.com. 
 *Please note* this site is a live and functioning marketplace, so don't post any items or
 buy any items unless you intend to commit to your activity.
