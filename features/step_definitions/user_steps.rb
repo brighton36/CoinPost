@@ -211,28 +211,35 @@ end
 # Ajax stuff:
 #
 def active_modal
-  page.all('.modal').to_a.find do |modal|
-    /display[ ]*\:[ ]*block/.match modal[:style]
-  end
+  page.find('.modal', :visible => true)
 end
 
 def form_by_id(label)
   '#%s' % label.downcase.tr(' ','_')
 end
 
-When /^I fill into the "([^"]*)" modal form$/ do |form_label, values|
-  within active_modal do
-    within( form_by_id(form_label) ) do
-      values.rows_hash.each_pair{ |sel, value| fill_in sel, :with => value }
+
+When /^I wait until all animations have finished$/ do  
+  Timeout.timeout(Capybara.default_wait_time) do
+    active = page.evaluate_script('$(":animated").length')
+    until active == 0
+      active = page.evaluate_script('$(":animated").length')
     end
   end
 end
 
-When /^I wait until the "([^"]*)" div class is displayed$/ do |divclass|
-  page.wait_until do
-    found_div = page.find('.%s' % divclass)
-    /display[ ]*\:[ ]*block/.match found_div[:style]
+When /^I fill into the "([^"]*)" modal form$/ do |form_label, values|
+  page.should have_selector('.modal',:visible => true)
+
+  modal = page.find('.modal', :visible => true)
+
+  within( modal.find( form_by_id(form_label) ) ) do
+    values.rows_hash.each_pair{ |sel, value| fill_in sel, :with => value }
   end
+end
+
+When /^I wait until the "([^"]*)" div class is displayed$/ do |divclass|
+  page.find('.%s' % divclass).should be_visible
 end
 
 Given /^The "(.*?)" conversion rate to BTC is "(.*?)"$/ do |iso_code, rate|
@@ -241,7 +248,12 @@ Given /^The "(.*?)" conversion rate to BTC is "(.*?)"$/ do |iso_code, rate|
 end
 
 When /^I change my conversion currency to "(.*?)"$/ do |iso_code|
-  select iso_code, :from => 'user_preffered_currency'
+  page.all('#conversion-info .dropdown-menu a').find{ |a|
+    /^#{iso_code}/i.match(a.text) }.try(:click)
+end
+
+When /^I change my profile conversion currency to "(.*?)"$/ do |iso_code|
+  pending
 end
 
 When 'I wait for the page to load' do
@@ -261,10 +273,6 @@ When /^I visit my profile edit page/ do
   visit '/users/edit'
 end
 
-When /^I change my profile conversion currency to "(.*?)"$/ do |iso_code|
-  select iso_code, :from => 'user_currency'
-end
-
 When /^I create a new account via AJAX/ do
   steps %Q{
     When I visit the home page
@@ -278,6 +286,7 @@ When /^I create a new account via AJAX/ do
       | user_password              | please |
       | user_password_confirmation | please |
     And I click "Create my Account"
+    And I wait until all animations have finished
     And I wait until the "modal-body_created_user" div class is displayed
   }
 end

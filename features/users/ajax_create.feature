@@ -10,6 +10,7 @@ Feature: Ajax Create
       And I click "Sign-in or Create Account"
       And I wait until the modal displays
       And I click "Create an Account"
+      And I wait until all animations have finished
       And I fill into the "Create User" modal form
         | user_name                  | ScottyMctesty |
         | user_email                 | scotty@spectest.com |
@@ -26,6 +27,7 @@ Feature: Ajax Create
       And I click "Sign-in or Create Account"
       And I wait until the modal displays
       And I click "Create an Account"
+      And I wait until all animations have finished
       And I fill into the "Create User" modal form
         | user_name                  | ScottyMctesty |
         | user_email                 | scotty@spectest.com |

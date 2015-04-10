@@ -95,9 +95,9 @@ $(document).ready ->
       else if captcha_controls.css('display') != 'none'
         captcha_controls.slideUp()
 
-      for attr, errors of response.errors
-        control_group = $("#reddit_#{attr}").parents('.control-group')
-        control_group.addClass('error')
-        control_group.find('.controls').last().append(
-          "<div class=\"help-inline\">#{errors.join(", ")}</div>")
-        console.log attr
+      if response?.errors?
+        for attr, errors of response.errors
+          control_group = $("#reddit_#{attr}").parents('.control-group')
+          control_group.addClass('error')
+          control_group.find('.controls').last().append(
+            "<div class=\"help-inline\">#{errors.join(", ")}</div>")

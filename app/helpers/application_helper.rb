@@ -30,9 +30,6 @@ module ApplicationHelper
       # This removes trailing 0's:
       ( (/(.+?\.[0]?.*?)[0]*$/.match amnt.exchange_to('BTC').to_s) ? $1 : amnt ), 
       :delimiter => ',', :precision => 16 )
-
-    rescue MtGox::Error
-      mtgox_down_label
   end
   
   def money_in_user_currency(amnt)
@@ -40,8 +37,6 @@ module ApplicationHelper
       '#', :rel => 'tooltip', 'data-placement' => 'right',
       'data-original-title' => "Conversion rate is calculated using Mt.Gox's sell ticker, approximately once every 15 minutes"
 
-    rescue MtGox::Error
-      mtgox_down_label
   end
 
   def header_navigation
@@ -66,15 +61,22 @@ module ApplicationHelper
     ((current_user) ? current_user.try(:currency) : session[:user_currency]) || 'USD'
   end
 
+  def currency_option_label(iso_code)
+    '%s (%s)' % [ iso_code, currency_symbol(iso_code) ]
+  end
+
   def currency_symbol(iso_code)
     cur = Money::Currency.find iso_code.downcase.to_sym
     (cur.html_entity.empty?) ? cur.symbol : cur.html_entity
   end
 
+  def supported_currencies
+    ::MtgoxBank::SUPPORTED_CURRENCIES
+  end
+
   def supported_currencies_options_map
-    ::MtgoxBank::SUPPORTED_CURRENCIES.map{ |iso_code| 
-      ['%s (%s)' % [ iso_code, currency_symbol(iso_code) ], iso_code ]
-    }
+    supported_currencies.map{ |iso_code| 
+      [ currency_option_label(iso_code), iso_code ] }
   end
 
   def blocks_for(position)
@@ -94,12 +96,6 @@ module ApplicationHelper
     raw ( '%s1.0 BTC = %s' % [ 
       image_tag('btc-symbol-blue-16.gif', :size => '11x16'),
       Money.new(100000000,'BTC').exchange_to(user_currency).format ] )
-    rescue MtGox::Error
-      mtgox_down_label
-  end
-
-  def mtgox_down_label
-    '(MTGox Unavailable)'
   end
 
   # Carrierwave image tag. We use this method so that the dimensions get automatically

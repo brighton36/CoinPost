@@ -1,5 +1,7 @@
 require 'money'
-require 'mtgox'
+#require 'mtgox'
+require 'coinbase'
+require 'money/bank/google_currency'
 
 class MtgoxBank < Money::Bank::VariableExchange
   CACHE_EXPIRATION = 15.minutes
@@ -57,11 +59,21 @@ class MtgoxBank < Money::Bank::VariableExchange
   def ticker(for_cur)
     for_cur = for_cur.to_s.downcase
     (self.class.ticker_rates.try(:[],for_cur)) ? 
-      self.class.ticker_rates[for_cur] :
+      self.class.ticker_rates[for_cur].to_f :
       Rails.cache.fetch('mtgox/ticker/%s' % for_cur, :expires_in => CACHE_EXPIRATION){
         Rails.logger.info "MtgoxBank is querying for %s" % for_cur
         begin
-          MtGox.ticker(for_cur.to_sym).last
+          # TODO: clean this up!
+          coinbase = Coinbase::Client.new('a8UrgIowGACaeMC3', 'QcLXSAFCYAYqpQqMQ7d9uy6diV9cQg9I')
+          usd_rate = coinbase.buy_price(1).to_f
+
+          if for_cur == 'USD'
+            usd_rate
+          else
+            goog_rate = Money::Bank::GoogleCurrency.new.get_rate('USD', for_cur).to_f
+            goog_rate * usd_rate
+          end
+
         rescue Errno::ETIMEDOUT, Errno::ECONNRESET, Faraday::Error::TimeoutError
           # Note/TODO: MtGox is down
         end

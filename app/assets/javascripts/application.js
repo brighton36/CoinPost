@@ -18,7 +18,6 @@
 //= require bootstrap-modal
 //= require bootstrap-transition
 //= require bootstrap-tooltip
-//= require bootstrap-select
 //= require detect_timezone
 //= require jquery.cookie
 //= require number_helpers

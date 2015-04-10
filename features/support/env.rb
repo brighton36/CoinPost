@@ -5,6 +5,7 @@
 # files.
 
 require 'cucumber/rails'
+require 'capybara/poltergeist'
 
 # Capybara defaults to XPath selectors rather than Webrat's default of CSS3. In
 # order to ease the transition to Capybara we set the default here. If you'd
@@ -51,16 +52,22 @@ end
 #     DatabaseCleaner.strategy = :transaction
 #   end
 #
+Capybara.default_wait_time = 4
 
-Capybara.javascript_driver = :webkit
+Capybara.register_driver :poltergeist do |app|
+  Capybara::Poltergeist::Driver.new(app, { :debug => false, 
+    :phantomjs_logger => $stdout,
+    :phantomjs_options  => ['--ignore-ssl-errors=true'],#, "--debug=yes"],
+    :window_size => [1300, 1000] })
+end
+Capybara.javascript_driver = :poltergeist
+
+Capybara.configure do |config|
+  config.match = :prefer_exact
+end
 
 # Possible values are :truncation and :transaction
 # The :transaction strategy is faster, but might give you threading problems.
 # See https://github.com/cucumber/cucumber-rails/blob/master/features/choose_javascript_database_strategy.feature
 Cucumber::Rails::Database.javascript_strategy = :truncation
 
-# This allows us to run webkit on the servers:
-require 'headless'
-
-headless = Headless.new
-headless.start

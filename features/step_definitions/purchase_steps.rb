@@ -54,7 +54,7 @@ end
 
 When /^I click the "([^"]*)" payment row's "([^"]*)"$/ do |item_label, button_label|
   row = page.all( '.payment_listing_table tbody tr' ).to_a.find do |row|
-    row.find('td:first a').try(:text).try(:strip) == item_label
+    row.first('td').find('a').try(:text).try(:strip) == item_label
   end
 
   row.all('a').to_a.find{|a| a.text.strip == button_label }.click
@@ -63,10 +63,9 @@ end
 When /^I wait until the modal displays$/ do
   # This ensure's that we wait until the window is visible before continuing.
   # Otherwise we end up with an odd timing bug on OS X
-  page.wait_until do
-    page.all('.modal').to_a.find do |modal|
-      /display[ ]*\:[ ]*block/.match modal[:style]
-    end
+  
+  page.all('.modal').each do |modal|
+    modal.should be_visible
   end
 end
 
@@ -121,24 +120,18 @@ When /^I click the "([^"]*)" button on the first "([^"]*)" feedback form$/ do |s
 end
 
 When /^I wait for the loading indicator to finish on the first "([^"]*)" feedback form$/ do |container|
-  within_feedback_form(container) do
-    page.wait_until do
-      loading = page.find('.loading_indicator')
-      /display[ ]*\:[ ]*none/.match loading[:style] 
-    end
-  end
+  loading_sel = [feedback_form(container), '.loading_indicator'].join(' ')
+  page.should have_selector(loading_sel, :visible => false)
 end
 
 Then /^I should see the first "([^"]*)" feedback form disappear$/ do |container|
-  within_feedback_form(container) do
-    page.find('.feedback_row')[:style].should match(/display[ ]*\:[ ]*none/)
-  end
+  loading_sel = [feedback_form(container), '.feedback_row'].join(' ')
+  page.should have_selector(loading_sel, :visible => false)
 end
 
 Then /^I should not see the first "([^"]*)" feedback form disappear$/ do |container|
-  within_feedback_form(container) do
-    page.find('.feedback_row')[:style].should_not match(/display[ ]*\:[ ]*none/)
-  end
+  loading_sel = [feedback_form(container), '.feedback_row'].join(' ')
+  page.first(loading_sel).should be_visible
 end
 
 Then /^I should see a modal purchase total of "([^"]*)"$/ do |total|

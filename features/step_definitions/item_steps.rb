@@ -42,7 +42,7 @@ When /^I attach the image "([^"]*)" to "([^"]*)"$/ do |src, selector|
 end
 
 When /^I click "([^"]*)"$/ do |link_or_button|
-  click_link_or_button link_or_button
+  page.click_link_or_button link_or_button
 end
 
 When /^I fill in a new item form$/ do
@@ -65,9 +65,7 @@ end
 
 
 When /^wait for the upload to finish$/ do
-  page.wait_until do
-    page.has_selector? '#fileupload table tbody.files tr.template-download'
-  end
+  page.should have_selector '#fileupload table tbody.files tr.template-download'
 end
 
 When /^I see "([^"]*)"$/ do |msg|
@@ -75,6 +73,7 @@ When /^I see "([^"]*)"$/ do |msg|
 end
 
 Then /^I should see "([^"]*)"$/ do |msg|
+  page.instance_eval{@touched=false}
   page.should have_content(msg)
 end
 

@@ -16,7 +16,7 @@ module ItemsHelper
   end
 
   def block_params_left
-    left_partial_on = %w(new create preview add_images edit_images update_images
+    left_partial_on = %w(new view_created preview add_images edit_images update_images
       edit update relist).join('|')
     [ 
       [:cell, :dashboard, :show, :user => current_user] 

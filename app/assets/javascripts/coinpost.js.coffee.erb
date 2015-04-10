@@ -18,12 +18,13 @@ window.clear_form_errors = (form) ->
 window.form_errors_from_ajax = (form, status) ->
   response = jQuery.parseJSON(status.responseText)
   prefix = $(form).attr('id').match(/^[^_]+_(.+?)(?:$|_[\d]+)/)[1]
-  
-  for attr, errors of response.errors
-    control_group = $(form).find([ '#'+prefix, attr, 'input' ].join('_'))
-    control_group.addClass('error')
-    control_group.find('.input').append([
-      '<span class="help-inline">', errors.join(' and '), '</span>'].join(''))
+
+  if response?.errors?
+    for attr, errors of response.errors
+      control_group = $(form).find([ '#'+prefix, attr, 'input' ].join('_'))
+      control_group.addClass('error')
+      control_group.find('.input').append([
+        '<span class="help-inline">', errors.join(' and '), '</span>'].join(''))
 
 $(document).ready ->
   # Let's detect the timezone:
@@ -37,15 +38,6 @@ $(document).ready ->
 
   # Initialize any datepickers:
   $('.date_picker').each (i,e) -> $(e).datepicker()
-
-  # This handles the onchange event for the currency selector in the header:
-  # NOTE: This trigger has to be registered before the selectpicker registration
-  # for some weird reason on some browsers:
-  $('#user_preffered_currency').change (e) -> 
-    window.location.href = window.location.pathname + '?user_currency='+$(@).val()
-      
-  # Select Pickers:
-  $('.selectpicker').selectpicker()
 
   # Initialize any tooltips:
   $('a[rel=tooltip]').tooltip()

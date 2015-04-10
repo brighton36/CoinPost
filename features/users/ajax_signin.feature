@@ -8,6 +8,7 @@ Feature: Sign in
       Given I am not logged in
       When I visit the home page
       And I click "Sign-in or Create Account"
+      And I wait until all animations have finished
       And I wait until the modal displays
       And I fill into the "User Login Form" modal form
         | session_user_email    | rickonstark@spectest.com |
@@ -19,6 +20,7 @@ Feature: Sign in
       Given I am not logged in
       When I visit the home page
       And I click "Sign-in or Create Account"
+      And I wait until all animations have finished
       And I wait until the modal displays
       And I fill into the "User Login Form" modal form
         | session_user_email    | rickonstark@spectest.com |

@@ -3,7 +3,6 @@ Feature: Preffered Currency Management
   A user
   Should be able to manage their preferred currency
 
-  @javascript
   Scenario: User is not signed up and changes currency
     Given I do not exist as a user
     And The "EUR" conversion rate to BTC is "2.0"
@@ -11,7 +10,7 @@ Feature: Preffered Currency Management
     And I change my conversion currency to "EUR"
     Then I should see a conversion currency notice of "1.0 BTC = €2.00"
 
-  @javascript @seed_stewie_user
+  @seed_stewie_user
   Scenario: Stewie Changes his preffered currency
     Given I am logged in as stewie
     And The "GBP" conversion rate to BTC is "3.0"
@@ -23,7 +22,7 @@ Feature: Preffered Currency Management
     And I login as stewie
     Then I should see a conversion currency notice of "1.0 BTC = £3.00"
 
-  @javascript @seed_stewie_user
+  @seed_stewie_user
   Scenario: Stewie Changes his profile currency via his profile
     Given I am logged in as stewie
     And The "GBP" conversion rate to BTC is "3.0"
@@ -33,7 +32,7 @@ Feature: Preffered Currency Management
     And I visit the home page
     Then I should see a conversion currency notice of "1.0 BTC = £3.00"
  
-  @javascript @seed_item_widget
+  @seed_item_widget
   Scenario: When a user views an item, its bitcoin value is converted to local currency 
     Given I do not exist as a user
     And The "EUR" conversion rate to BTC is "3.0"

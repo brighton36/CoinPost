@@ -39,9 +39,24 @@
             =link_to btc_to_currency_header, '#', :rel => 'tooltip', 
               'data-placement' => 'left', :class => 'exchange_rate',
               'data-original-title' => t('.exchange_rate_notice')
-            =select_tag 'user[preffered_currency]', 
-              options_for_select(supported_currencies_options_map, user_currency),
-              :class => 'selectpicker'
+            -if request.get?
+              .btn-group.bootstrap-select
+                %button#user_preffered_currency.btn.dropdown-toggle(data-toggle="dropdown" href="#")
+                  =currency_option_label(user_currency).html_safe
+                  %span.caret
+                .dropdown-menu
+                  %ul
+                    -supported_currencies.each do |iso_code|
+                      -unless iso_code == user_currency
+                        %li
+                          =link_to currency_option_label(iso_code).html_safe, 
+                            url_for(params.merge({:user_currency => iso_code})),
+                            :tabindex => "-1"
+            -else
+              %button#user_preffered_currency.btn.disabled(href="#")
+                =currency_option_label(user_currency).html_safe
+                %span.caret
+
 - if (action_name == 'index' && controller_name == 'home')               
   .hero-unit
     %div.contents

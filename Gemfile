@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.14'
+gem 'rails', '3.2.13'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -20,7 +20,7 @@ group :test do
   #  gem 'rails3-generators'
   gem 'rspec-rails'
   gem 'capybara'
-  gem 'capybara-webkit'
+  gem 'poltergeist'
   gem 'cucumber'
   gem "cucumber-rails", :require => false
   gem 'launchy'
@@ -28,7 +28,6 @@ group :test do
   gem 'email_spec'
   gem 'delorean'
   gem 'sqlite3'
-  gem 'headless'
 end
 
 group :development do
@@ -38,8 +37,7 @@ group :development do
 end
 
 group :production do
-  # Some of you might want this:
-  # gem 'newrelic_rpm'
+  gem 'newrelic_rpm'
 end
 
 group :profile do
@@ -70,6 +68,7 @@ gem 'cells'
 gem 'mailboxer', git: 'git://github.com/ging/mailboxer.git'
 gem "recaptcha", :require => "recaptcha/rails"
 gem 'sitemap'
-gem "guten-mtgox", :git => "git://github.com/GutenYe/mtgox.git"
+gem "coinbase", '1.3.0'
+gem "google_currency", :require => 'money/bank/google_currency'
 gem 'carrierwave-meta'
 gem 'snoo'

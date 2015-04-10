@@ -49,10 +49,8 @@ Then /^I should see the message "([^"]*)"$/ do |subject|
 end
 
 When /^I wait for the "([^"]*)" loading indicator to finish$/ do |form|
-  page.wait_until do
-    loading = page.find( '#%s .loading_indicator' % form.downcase.tr(' ','_') )
-    /display[ ]*\:[ ]*none/.match loading[:style] 
-  end
+  modal_sel = '#%s .loading_indicator' % form.downcase.tr(' ','_')
+  page.should have_selector(modal_sel, :visible => false)
 end
 
 Then /^I should see the modal popup success message$/ do
@@ -60,7 +58,7 @@ Then /^I should see the modal popup success message$/ do
 end
 
 Then /^I should not see the modal popup success message$/ do
-  page.find('.modal-body_success')[:style].should match(/\A(?:display[ ]*\:[ ]*none\Z|[ ]*\Z)/)
+  page.should have_selector('.modal-body_success', :visible => false)
 end
 
 Then /^I should receive a "([^"]*)" html response$/ do |response|

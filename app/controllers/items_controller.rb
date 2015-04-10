@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
   NEW_STEPS = [:new, :add_images, :preview]
 
   filter_access_to :show, :edit, :update, :destroy, :disable, :edit_images, 
-    :update_images, :relist, :submit_to_reddit, :attribute_check => true
+    :update_images, :relist, :submit_to_reddit, :view_created, :attribute_check => true
   filter_access_to :all
 
   respond_to :html
@@ -58,11 +58,19 @@ class ItemsController < ApplicationController
   end
 
   def create
-    respond_with @item do |format|
-      if !@item.save
+    if !@item.save
+      respond_with @item do |format|
         flash[:error] = t('flash.items.create.alert')
         format.html { render :action => :new }
       end
+    else
+      redirect_to created_item_url(@item)
+    end
+  end
+
+  def view_created
+    respond_with @item do |format|
+      format.html{render}
     end
   end
 
