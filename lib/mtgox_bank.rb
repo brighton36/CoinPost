@@ -64,7 +64,7 @@ class MtgoxBank < Money::Bank::VariableExchange
         Rails.logger.info "MtgoxBank is querying for %s" % for_cur
         begin
           # TODO: clean this up!
-          coinbase = Coinbase::Client.new('a8UrgIowGACaeMC3', 'QcLXSAFCYAYqpQqMQ7d9uy6diV9cQg9I')
+          coinbase = Coinbase::Client.new('TODO: User', 'TODO: Pass')
           usd_rate = coinbase.buy_price(1).to_f
 
           if for_cur == 'USD'
